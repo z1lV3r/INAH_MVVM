@@ -1,9 +1,5 @@
 ﻿using INAH.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using INAH.Views;
 using System.Windows;
 
 namespace INAH.Services
@@ -23,10 +19,19 @@ namespace INAH.Services
         }
         public void NavigateToLogin(bool isDialog=false)
         {
-            MainWindow login = new MainWindow();
-            LoginViewModel loginVM = new LoginViewModel();
-            login.DataContext = loginVM;
-            Show(login, isDialog);
+            LoginView view = new LoginView()
+            {
+                DataContext = new LoginViewModel()
+            };
+            Show(view, isDialog);
+        }
+
+        public void NativigateToCollections(string user, bool isDialog=false)
+        {
+            CollectionsView view = new CollectionsView();
+            {
+                
+            }
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace INAH.ViewModels
 {
-    class LoginViewModel : ViewModelBase
+    public class LoginViewModel : ViewModelBase
     {
         private string email;
 
