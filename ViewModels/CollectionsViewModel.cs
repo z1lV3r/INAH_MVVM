@@ -8,5 +8,9 @@
         {
             User = user;
         }
+
+        public CollectionsViewModel()
+        {
+        }
     }
 }

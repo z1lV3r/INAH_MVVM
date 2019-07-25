@@ -1,8 +1,10 @@
-﻿using System;
+﻿using INAH.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using System.Windows;
 
