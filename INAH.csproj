@@ -100,6 +100,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Models\adquisiciones.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
@@ -210,9 +211,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Converters\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\Images\help.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
