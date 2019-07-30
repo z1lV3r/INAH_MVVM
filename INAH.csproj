@@ -72,7 +72,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Component\CollectionsItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Dictionaries\Converters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Dictionaries\Styles\CollectionsItemImageButtonStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -100,7 +108,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Component\CollectionsItem.xaml.cs">
+      <DependentUpon>CollectionsItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\adquisiciones.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
@@ -166,9 +177,12 @@
     </Compile>
     <Compile Include="Services\NavigatorService.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="ViewModels\BaseWindowViewModel.cs" />
+    <Compile Include="ViewModels\CollectionsItemViewModel.cs" />
     <Compile Include="ViewModels\CollectionsViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Services\SecurityService.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="Views\CollectionsView.xaml.cs">
       <DependentUpon>CollectionsView.xaml</DependentUpon>
     </Compile>
@@ -232,6 +246,12 @@
     <Content Include="Resources\data.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Images\delete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\edit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Resources\Images\logoSDC.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

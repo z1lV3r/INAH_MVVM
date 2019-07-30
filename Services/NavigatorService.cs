@@ -6,32 +6,45 @@ namespace INAH.Services
 {
     public class NavigatorService
     {
-
-        private void Show(Window window, bool isDialog)
+        public enum NavigationMode { SHOW, MODAL, DIALOG }
+        private void Show(object context, Window window, NavigationMode navigationMode)
         {
-            if(isDialog)
+            switch(navigationMode)
             {
-                window.ShowDialog();
-            } else
-            {
-                window.Show();
+                case NavigationMode.SHOW:
+                    window.Show();
+                    foreach (Window item in Application.Current.Windows)
+                    {
+                        if (item.DataContext == context) item.Close();
+                    }
+                    break;
+                case NavigationMode.MODAL:
+                    window.Show();
+                    break;
+                case NavigationMode.DIALOG:
+                    window.ShowDialog();
+                    break;
             }
         }
-        public void NavigateToLogin(bool isDialog=false)
+        public void NavigateToLogin(object context, NavigationMode navigationMode=NavigationMode.SHOW)
         {
             LoginView view = new LoginView()
             {
                 DataContext = new LoginViewModel()
             };
-            Show(view, isDialog);
+            Show(context, view, navigationMode);
         }
 
-        public void NativigateToCollections(string user, bool isDialog=false)
+        public void NativigateToCollections(object context, string user, NavigationMode navigationMode = NavigationMode.SHOW)
         {
-            CollectionsView view = new CollectionsView();
+            CollectionsView view = new CollectionsView()
             {
-                
-            }
+                DataContext = new CollectionsViewModel()
+                {
+                    User = user
+                }
+            };
+            Show(context, view, navigationMode);
         }
     }
 }

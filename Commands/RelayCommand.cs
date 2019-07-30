@@ -7,12 +7,12 @@ using System.Windows.Input;
 
 namespace INAH.Commands
 {
-    public class CommandBase : ICommand
+    public class RelayCommand : ICommand
     {
         readonly Action<object> action;
         readonly Predicate<object> canExecute;
 
-        public CommandBase(Action<object> action, Predicate<object> canExecute)
+        public RelayCommand(Action<object> action, Predicate<object> canExecute = null)
         {
             if (action == null)
                 throw new NullReferenceException("action");
