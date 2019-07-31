@@ -6,10 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace INAH.ViewModels
+namespace INAH.ViewModels.Abstracts
 {
-    public abstract class BaseWindowViewModel : BaseViewModel
+    public abstract class BaseWindowViewModel : BaseViewModel, IRequireViewIdentification
     {
+        public abstract Guid ViewId { get; }
+
         private static bool isOnline;
         private string statusText;
         private SolidColorBrush statusColor;

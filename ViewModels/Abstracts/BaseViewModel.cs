@@ -5,7 +5,7 @@ using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
 using System.Windows.Media;
 
-namespace INAH.ViewModels
+namespace INAH.ViewModels.Abstracts
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {

@@ -1,6 +1,7 @@
 ﻿using INAH.Commands;
 using INAH.Services;
-using System.Net.NetworkInformation;
+using INAH.ViewModels.Abstracts;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -8,6 +9,8 @@ namespace INAH.ViewModels
 {
     public class LoginViewModel : BaseWindowViewModel
     {
+        private static Guid viewId;
+        public override Guid ViewId { get { return viewId; } }
         public string Email { get; set; }
         public RelayCommand LoginCommand { get; private set; }
 
@@ -15,6 +18,7 @@ namespace INAH.ViewModels
 
         public LoginViewModel()
         {
+            viewId = Guid.NewGuid();
             Tittle = "Inicio de sesión";
             LoginCommand = new RelayCommand(LoginCommandExec);
             SecurityService = new SecurityService();
@@ -27,7 +31,7 @@ namespace INAH.ViewModels
             if(SecurityService.authenticate(Email, password))
             {
                 string user="";
-                navigatorService.NativigateToCollections(this, user);
+                navigatorService.NativigateToCollections(ViewId, user);
             }
             else
             {

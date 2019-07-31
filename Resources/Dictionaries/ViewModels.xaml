@@ -3,4 +3,6 @@
                     xmlns:vm="clr-namespace:INAH.ViewModels">
     <vm:LoginViewModel x:Key="LoginVM" />
     <vm:CollectionsViewModel x:Key="CollectionsVM" />
+    <vm:ItemDetailViewModel x:Key="ItemDetailVM" />
+    <vm:ItemEditViewModel x:Key="ItemEditVM" />
 </ResourceDictionary>

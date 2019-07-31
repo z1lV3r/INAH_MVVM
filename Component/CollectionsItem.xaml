@@ -58,10 +58,10 @@
             </Grid.Style>
             <Label Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="Black" Content="{Binding Name}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Margin="0,20,0,-20"/>
             <Button Content="Mostrar detalle" Command="{Binding ShowDetailCommand}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,10,0,-10"/>
-            <Button Command="{Binding EditCommand}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Style="{StaticResource CollectionsItemStyle}">
+            <Button Command="{Binding DeleteCommand}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Style="{StaticResource CollectionsItemStyle}">
                 <Image Source="/Resources/Images/delete.png" />
             </Button>
-            <Button Command="{Binding DeleteCommand}" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="1" Style="{StaticResource CollectionsItemStyle}">
+            <Button Command="{Binding EditCommand}" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="1" Style="{StaticResource CollectionsItemStyle}">
                 <Image Source="/Resources/Images/edit.png" />
             </Button>
         </Grid>

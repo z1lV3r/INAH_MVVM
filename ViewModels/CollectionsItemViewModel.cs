@@ -1,17 +1,14 @@
 ﻿using INAH.Commands;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using INAH.Services;
+using INAH.ViewModels.Abstracts;
 using System.Windows;
 
 namespace INAH.ViewModels
 {
     public class CollectionsItemViewModel : BaseViewModel
     {
-
         private string image;
+        private string name;
         public string Image
         {
             get => image;
@@ -21,7 +18,6 @@ namespace INAH.ViewModels
                 NotifyPropertyChanged();
             }
         }
-        private string name;
         public string Name
         {
             get => name;
@@ -46,12 +42,12 @@ namespace INAH.ViewModels
 
         public void ShowDetailCommandExec(object args)
         {
-            MessageBox.Show(name);
+            navigatorService.NavigateToItemDetail(CollectionsViewModel.viewId);
         }
 
         public void EditCommandExec(object args)
         {
-            MessageBox.Show(name);
+            navigatorService.NavigateToItemEdit(CollectionsViewModel.viewId);
         }
 
         public void DeleteCommandExec(object args)

@@ -1,5 +1,7 @@
 ﻿using INAH.ViewModels;
+using INAH.ViewModels.Abstracts;
 using INAH.Views;
+using System;
 using System.Windows;
 
 namespace INAH.Services
@@ -7,7 +9,7 @@ namespace INAH.Services
     public class NavigatorService
     {
         public enum NavigationMode { SHOW, MODAL, DIALOG }
-        private void Show(object context, Window window, NavigationMode navigationMode)
+        private void Show(Guid windowId, Window window, NavigationMode navigationMode)
         {
             switch(navigationMode)
             {
@@ -15,7 +17,8 @@ namespace INAH.Services
                     window.Show();
                     foreach (Window item in Application.Current.Windows)
                     {
-                        if (item.DataContext == context) item.Close();
+                        BaseWindowViewModel vm = item.DataContext as BaseWindowViewModel;
+                        if (vm != null && vm.ViewId == windowId) item.Close();
                     }
                     break;
                 case NavigationMode.MODAL:
@@ -26,16 +29,16 @@ namespace INAH.Services
                     break;
             }
         }
-        public void NavigateToLogin(object context, NavigationMode navigationMode=NavigationMode.SHOW)
+        public void NavigateToLogin(Guid windowId, NavigationMode navigationMode=NavigationMode.SHOW)
         {
             LoginView view = new LoginView()
             {
                 DataContext = new LoginViewModel()
             };
-            Show(context, view, navigationMode);
+            Show(windowId, view, navigationMode);
         }
 
-        public void NativigateToCollections(object context, string user, NavigationMode navigationMode = NavigationMode.SHOW)
+        public void NativigateToCollections(Guid windowId, string user, NavigationMode navigationMode = NavigationMode.SHOW)
         {
             CollectionsView view = new CollectionsView()
             {
@@ -44,7 +47,31 @@ namespace INAH.Services
                     User = user
                 }
             };
-            Show(context, view, navigationMode);
+            Show(windowId, view, navigationMode);
+        }
+
+        public void NavigateToItemDetail(Guid windowId, NavigationMode navigationMode = NavigationMode.SHOW)
+        {
+            ItemDetailView view = new ItemDetailView()
+            {
+                DataContext = new ItemDetailViewModel()
+                {
+
+                }
+            };
+            Show(windowId, view, navigationMode);
+        }
+
+        public void NavigateToItemEdit(Guid windowId, NavigationMode navigationMode = NavigationMode.SHOW)
+        {
+            ItemEditView view = new ItemEditView()
+            {
+                DataContext = new ItemEditViewModel()
+                {
+
+                }
+            };
+            Show(windowId, view, navigationMode);
         }
     }
 }
