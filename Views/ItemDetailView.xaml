@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:cc="clr-namespace:INAH.Component"
         xmlns:local="clr-namespace:INAH.Views"
         mc:Ignorable="d"
         Title="{Binding Tittle, Mode=OneTime}"
@@ -20,7 +21,46 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Label Content="{Binding Tittle, Mode=OneTime}" Style="{StaticResource WindowTittleStyle}"
-               Grid.Row="0"  Grid.ColumnSpan="3"
-               HorizontalAlignment="Center" />
+               Grid.Row="0" HorizontalAlignment="Center" />
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="9*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="5*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" VerticalScrollBarVisibility="Auto">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                    <cc:ItemDetailData DetailTittle="Autor: " Value="{Binding Author, Mode=OneWay}" Visibility="{Binding Author, Converter={StaticResource ItemDetailVisibilityCV}, Mode=OneWay}"/>
+                    <cc:ItemDetailData DetailTittle="Numero de inventario: " Value="{Binding StockNumber, Mode=OneWay}" Visibility="{Binding StockNumber, Converter={StaticResource ItemDetailVisibilityCV}, Mode=OneWay}"/>
+                    <cc:ItemDetailData DetailTittle="Autor: " Value="{Binding Author, Mode=OneWay}" Visibility="{Binding Author, Converter={StaticResource ItemDetailVisibilityCV}, Mode=OneWay}"/>
+                    <cc:ItemDetailData DetailTittle="Autor: " Value="{Binding Author, Mode=OneWay}" Visibility="{Binding Author, Converter={StaticResource ItemDetailVisibilityCV}, Mode=OneWay}"/>
+                    <cc:ItemDetailData DetailTittle="Autor: " Value="{Binding Author, Mode=OneWay}" Visibility="{Binding Author, Converter={StaticResource ItemDetailVisibilityCV}, Mode=OneWay}"/>
+
+                </StackPanel>
+            </ScrollViewer>
+            <Grid Grid.Row="1" Grid.Column="2" Grid.RowSpan="6">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Image Height="350" Width="Auto" Grid.Row="0" Grid.Column="0" />
+                <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="medida:" Grid.Column="0" HorizontalAlignment="Right"/>
+                        <Label Content="content" Grid.Column="1" HorizontalAlignment="Left"/>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

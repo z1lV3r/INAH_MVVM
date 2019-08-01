@@ -82,6 +82,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Component\ItemDetailData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Dictionaries\Converters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -126,6 +130,10 @@
     <Compile Include="Component\CollectionsItem.xaml.cs">
       <DependentUpon>CollectionsItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Component\ItemDetailData.xaml.cs">
+      <DependentUpon>ItemDetailData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\ItemDetailVisibilityConverter.cs" />
     <Compile Include="Models\adquisiciones.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>

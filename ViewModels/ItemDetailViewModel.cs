@@ -18,6 +18,7 @@ namespace INAH.ViewModels
         {
             viewId = Guid.NewGuid();
             Tittle = "Detalle de elemento";
+            StockNumber = "123";
         }
     }
 }
