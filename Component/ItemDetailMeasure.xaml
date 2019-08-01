@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="INAH.Component.ItemDetailMeasure"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:INAH.Component"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Name="ItemDetail">
+    <Grid Visibility="{Binding Visibility, ElementName=ItemDetail}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="{Binding MeasureName, ElementName=ItemDetail}" Grid.Column="0" HorizontalAlignment="Right"/>
+        <Label Content="{Binding MeasureValue, ElementName=ItemDetail}" Grid.Column="1" HorizontalAlignment="Left"/>
+    </Grid>
+</UserControl>

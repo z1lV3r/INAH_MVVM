@@ -18,7 +18,38 @@ namespace INAH.ViewModels
         {
             viewId = Guid.NewGuid();
             Tittle = "Detalle de elemento";
-            StockNumber = "123";
+            ImageSource = "/Resources/Images/help.png";
+            StockNumber = "StockNumber example";
+            CatalogNumber = "CatalogNumber example";
+            RegistryNumber = "RegistryNumber example";
+            OtherNumber = "OtherNumber example";
+            CoveredPieces = 3;
+            Type = "Type example";
+            StockNumber = "StockNumber example";
+            Subject = "Subject example";
+            Author = "Author example";
+            Period = "Period example";
+            Culture = "Culture example";
+            Origin = "Origin example";
+            Shape = "Shape example";
+            Inscriptions = "Inscriptions example";
+            Description = "Description muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy muy larga";
+            Remarks = "Remarks example";
+            Collection = "Collection example";
+            ConservationType = 2;
+            Valuation = 100;
+            RawMaterial = "RawMaterial example";
+            ManufacturingTechnique = "ManufacturingTechnique example";
+            DecorativeTechnique = "DecorativeTechnique example";
+            Provenance = "Provenance example";
+            AcquisitionMethod = "AcquisitionMethod example";
+            Location = "Location example";
+
+            Height = 20.5f;
+            Width = 22.5f;
+            Length = 20.5f;
+            Diameter = 20.5f;
+            Weight = 20.5f;
         }
     }
 }

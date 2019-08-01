@@ -2,5 +2,5 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:cv="clr-namespace:INAH.Converters">
     <cv:ItemDetailVisibilityConverter x:Key="ItemDetailVisibilityCV"/>
-
+    <cv:ItemDetailMeasureVisibilityConverter x:Key="ItemDetailMeasureVisibilityCV"/>
 </ResourceDictionary>

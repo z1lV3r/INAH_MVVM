@@ -12,7 +12,9 @@
             <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="{Binding DetailTittle, ElementName=ItemDetail}" Grid.Column="0" HorizontalAlignment="Right"/>
-        <Label Content="{Binding Value, ElementName=ItemDetail}" Grid.Column="1" HorizontalAlignment="Left"/>
+        <Label Content="{Binding DetailTittle, ElementName=ItemDetail}" Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Right"/>
+        <Label Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Left">
+            <TextBlock TextWrapping="WrapWithOverflow" Text="{Binding Value, ElementName=ItemDetail}"/>
+        </Label>
     </Grid>
 </UserControl>
