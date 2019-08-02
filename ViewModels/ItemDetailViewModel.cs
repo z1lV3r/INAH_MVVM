@@ -19,7 +19,6 @@ namespace INAH.ViewModels
             viewId = Guid.NewGuid();
             Tittle = "Detalle de elemento";
             ImageSource = "/Resources/Images/help.png";
-            StockNumber = "StockNumber example";
             CatalogNumber = "CatalogNumber example";
             RegistryNumber = "RegistryNumber example";
             OtherNumber = "OtherNumber example";

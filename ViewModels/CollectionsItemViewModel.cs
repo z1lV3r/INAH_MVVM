@@ -9,6 +9,7 @@ namespace INAH.ViewModels
     {
         private string image;
         private string name;
+        public string Id { get; set; }
         public string Image
         {
             get => image;
@@ -31,8 +32,9 @@ namespace INAH.ViewModels
         public RelayCommand EditCommand { get; private set; }
         public RelayCommand DeleteCommand { get; private set; }
 
-        public CollectionsItemViewModel(string image, string name)
+        public CollectionsItemViewModel(string id, string image, string name)
         {
+            Id = id;
             Image = image;
             Name = name;
             ShowDetailCommand = new RelayCommand(ShowDetailCommandExec);
@@ -42,12 +44,12 @@ namespace INAH.ViewModels
 
         public void ShowDetailCommandExec(object args)
         {
-            navigatorService.NavigateToItemDetail(CollectionsViewModel.viewId);
+            navigatorService.NavigateToItemDetail(CollectionsViewModel.viewId, Id);
         }
 
         public void EditCommandExec(object args)
         {
-            navigatorService.NavigateToItemEdit(CollectionsViewModel.viewId);
+            navigatorService.NavigateToItemEdit(CollectionsViewModel.viewId, Id);
         }
 
         public void DeleteCommandExec(object args)

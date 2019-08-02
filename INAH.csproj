@@ -90,11 +90,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Component\ItemEditComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Dictionaries\Converters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Dictionaries\Styles\CategoryTittleStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Dictionaries\Styles\CollectionsItemImageButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Dictionaries\Styles\TittleStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -139,6 +151,9 @@
     </Compile>
     <Compile Include="Component\ItemDetailMeasure.xaml.cs">
       <DependentUpon>ItemDetailMeasure.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Component\ItemEditComboBox.xaml.cs">
+      <DependentUpon>ItemEditComboBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\ItemDetailMeasureVisibilityConverter.cs" />
     <Compile Include="Converters\ItemDetailVisibilityConverter.cs" />

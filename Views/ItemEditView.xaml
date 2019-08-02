@@ -21,6 +21,5 @@
         <Label Content="{Binding Tittle, Mode=OneTime}" Style="{StaticResource WindowTittleStyle}"
                Grid.Row="0"  Grid.ColumnSpan="3"
                HorizontalAlignment="Center" />
-        
     </Grid>
 </Window>

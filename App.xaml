@@ -8,6 +8,7 @@
                 <ResourceDictionary Source="/Resources/Dictionaries/Templates/WindowTemplate.xaml"/>
                 <ResourceDictionary Source="/Resources/Dictionaries/Styles/WindowStyle.xaml"/>
                 <ResourceDictionary Source="/Resources/Dictionaries/Styles/CollectionsItemImageButtonStyle.xaml"/>
+                <ResourceDictionary Source="/Resources/Dictionaries/Styles/CategoryTittleStyle.xaml"/>
                 <ResourceDictionary Source="/Resources/Dictionaries/ViewModels.xaml"/>
                 <ResourceDictionary Source="/Resources/Dictionaries/Converters.xaml"/>
             </ResourceDictionary.MergedDictionaries>
