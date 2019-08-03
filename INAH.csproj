@@ -90,7 +90,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Component\ItemEditComboBox.xaml">
+    <Page Include="Component\TitledComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Component\TitledTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -98,7 +102,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Dictionaries\Styles\CategoryTittleStyle.xaml">
+    <Page Include="Resources\Dictionaries\Styles\CategoryTitleStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -106,7 +110,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Dictionaries\Styles\TittleStyle.xaml">
+    <Page Include="Resources\Dictionaries\Styles\TitleStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -152,9 +156,13 @@
     <Compile Include="Component\ItemDetailMeasure.xaml.cs">
       <DependentUpon>ItemDetailMeasure.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Component\ItemEditComboBox.xaml.cs">
-      <DependentUpon>ItemEditComboBox.xaml</DependentUpon>
+    <Compile Include="Component\TitledComboBox.xaml.cs">
+      <DependentUpon>TitledComboBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Component\TitledTextBox.xaml.cs">
+      <DependentUpon>TitledTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\ItemDetailMeasureVisibilityConverter.cs" />
     <Compile Include="Converters\ItemDetailVisibilityConverter.cs" />
     <Compile Include="Models\adquisiciones.cs">
@@ -285,9 +293,9 @@
     <Resource Include="Resources\Images\help.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <EmbeddedResource Include="Resources\Images\logoINAH.png">
+    <Resource Include="Resources\Images\logoINAH.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Resource>
     <Content Include="Models\DataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DataModel.edmx</DependentUpon>
@@ -307,9 +315,9 @@
     <Resource Include="Resources\Images\edit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Content Include="Resources\Images\logoSDC.png">
+    <Resource Include="Resources\Images\logoSDC.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </Resource>
     <Resource Include="Resources\Images\uppercase.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

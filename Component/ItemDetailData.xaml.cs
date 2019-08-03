@@ -22,15 +22,15 @@ namespace INAH.Component
     {
 
 
-        public string DetailTittle
+        public string DetailTitle
         {
-            get => (string)GetValue(DetailTittleProperty);
-            set => SetValue(DetailTittleProperty, value);
+            get => (string)GetValue(DetailTitleProperty);
+            set => SetValue(DetailTitleProperty, value);
         }
 
-        // Using a DependencyProperty as the backing store for Tittle.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty DetailTittleProperty =
-            DependencyProperty.Register("DetailTittle", typeof(string), typeof(ItemDetailData),
+        // Using a DependencyProperty as the backing store for Title.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty DetailTitleProperty =
+            DependencyProperty.Register("DetailTitle", typeof(string), typeof(ItemDetailData),
                 new PropertyMetadata(string.Empty));
 
 

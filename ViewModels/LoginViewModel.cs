@@ -19,7 +19,7 @@ namespace INAH.ViewModels
         public LoginViewModel()
         {
             viewId = Guid.NewGuid();
-            Tittle = "Inicio de sesión";
+            Title = "Inicio de sesión";
             LoginCommand = new RelayCommand(LoginCommandExec);
             SecurityService = new SecurityService();
         }

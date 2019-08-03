@@ -16,7 +16,7 @@ namespace INAH.ViewModels
         public CollectionsViewModel()
         {
             viewId = Guid.NewGuid();
-            Tittle = "Colección";
+            Title = "Colección";
             Items = new ObservableCollection<CollectionsItemViewModel>();
             Items.Add(new CollectionsItemViewModel("1","/Resources/Images/help.png", "name1"));
             Items.Add(new CollectionsItemViewModel("2","/Resources/Images/help.png", "name2"));

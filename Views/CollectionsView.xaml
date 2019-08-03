@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:comp="clr-namespace:INAH.Component"
         mc:Ignorable="d"
-        Title="{Binding Tittle, Mode=OneTime}"
+        Title="{Binding Title, Mode=OneTime}"
         DataContext="{StaticResource CollectionsVM}"
         Style="{StaticResource MyWindowStyle}" WindowStartupLocation="CenterScreen" Height="664" Width="942">
     <Grid>
@@ -13,7 +13,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Label Content="{Binding Tittle, Mode=OneTime}" Style="{StaticResource WindowTittleStyle}"
+        <Label Content="{Binding Title, Mode=OneTime}" Style="{StaticResource WindowTitleStyle}"
                Grid.Row="0"  Grid.ColumnSpan="3"
                HorizontalAlignment="Center" />
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">

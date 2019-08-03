@@ -39,7 +39,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Content="{Binding Tittle, Mode=OneTime}" Style="{StaticResource WindowTittleStyle}"
+            <Label Content="{Binding Title, Mode=OneTime}" Style="{StaticResource WindowTitleStyle}"
                    Grid.Column="1"  Grid.ColumnSpan="3"
                    HorizontalAlignment="Center" VerticalAlignment="Top" Margin="82,-42,81,0" />
             <Rectangle Grid.ColumnSpan="6" Grid.RowSpan="5" Stroke="Black" />

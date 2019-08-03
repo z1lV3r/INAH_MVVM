@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:cc="clr-namespace:INAH.Component"
         mc:Ignorable="d"
-        Title="{Binding Tittle, Mode=OneTime}"
+        Title="{Binding Title, Mode=OneTime}"
         DataContext="{StaticResource ItemEditVM}"
         Style="{StaticResource MyWindowStyle}" WindowStartupLocation="CenterScreen" Height="664" Width="942">
     <i:Interaction.Triggers>
@@ -18,8 +19,13 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Label Content="{Binding Tittle, Mode=OneTime}" Style="{StaticResource WindowTittleStyle}"
+        <Label Content="{Binding Title, Mode=OneTime}" Style="{StaticResource WindowTitleStyle}"
                Grid.Row="0"  Grid.ColumnSpan="3"
                HorizontalAlignment="Center" />
+        <StackPanel Grid.Row="1">
+            <cc:TitledComboBox Title="Content: " ComboBoxItemsSource="{Binding Items}"/>
+            <cc:TitledTextBox Text="124" Title="kjm" HasHelp="True" HasToLowerCase="True" Width="100"/>
+            <cc:TitledTextBox Text="124" Title="kjm" HasHelp="False" Width="100"/>
+        </StackPanel>
     </Grid>
 </Window>

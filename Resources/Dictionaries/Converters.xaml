@@ -3,4 +3,5 @@
                     xmlns:cv="clr-namespace:INAH.Converters">
     <cv:ItemDetailVisibilityConverter x:Key="ItemDetailVisibilityCV"/>
     <cv:ItemDetailMeasureVisibilityConverter x:Key="ItemDetailMeasureVisibilityCV"/>
+    <cv:BoolToVisibilityConverter x:Key="BoolToVisibilityCV"/>
 </ResourceDictionary>

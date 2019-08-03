@@ -16,7 +16,7 @@ namespace INAH.ViewModels.Abstracts
         private string statusText;
         private SolidColorBrush statusColor;
 
-        public string Tittle { get; set; }
+        public string Title { get; set; }
         public string Rights { get; set; }
         public bool IsOnline
         {

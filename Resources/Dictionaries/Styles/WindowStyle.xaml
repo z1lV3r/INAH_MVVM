@@ -3,13 +3,13 @@
     <Style TargetType="Window" x:Key="MyWindowStyle">
         <Setter Property="Template" Value="{StaticResource WindowTemplate}" />
         <Setter Property="Height" Value="664.474" />
-        <Setter Property="Title" Value="{Binding Tittle, Mode=OneTime}" />
+        <Setter Property="Title" Value="{Binding Title, Mode=OneTime}" />
         <Setter Property="MinHeight" Value="664.474" />
         <Setter Property="Width" Value="942.105" />
         <Setter Property="MinWidth" Value="942.105" />
         <Setter Property="Background" Value="White" />
     </Style>
-    <Style TargetType="Label" x:Key="WindowTittleStyle">
+    <Style TargetType="Label" x:Key="WindowTitleStyle">
         <Setter Property="FontSize" Value="24" />
         <Setter Property="FontFamily" Value="Nirmala UI" />
     </Style>
