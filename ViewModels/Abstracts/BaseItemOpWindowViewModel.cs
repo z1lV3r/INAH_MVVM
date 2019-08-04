@@ -42,7 +42,7 @@ namespace INAH.ViewModels.Abstracts
         public int ConservationType { get; set; }   //Conservacion
 
         //avaluo from table description
-        public int Valuation { get; set; }          //Avaluo
+        public double Valuation { get; set; }          //Avaluo
 
         //composicion from table composicion
         public string RawMaterial { get; set; }             //Materia_prima
@@ -63,15 +63,22 @@ namespace INAH.ViewModels.Abstracts
         public float Diameter { get; set; } //Diametro
         public float Weight { get; set; }   //Peso
         public RelayCommand ReturnToCollections { get; private set; }
+        public RelayCommand BackToCollections { get; private set; }
 
         public BaseItemOpWindowViewModel()
         {
             ReturnToCollections = new RelayCommand(ReturnToCollectionsExec);
+            BackToCollections = new RelayCommand(BackToCollectionsExec);
         }
 
         public void ReturnToCollectionsExec(object args)
         {
             navigatorService.NativigateToCollections(ViewId, CollectionsViewModel.user, NavigatorService.NavigationMode.MODAL);
+        }
+
+        public void BackToCollectionsExec(object args)
+        {
+            navigatorService.Close(ViewId);
         }
     }
 }

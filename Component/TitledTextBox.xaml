@@ -11,16 +11,32 @@
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
             <Label Content="{Binding Title, ElementName=TitledTextBoxControl}" Style="{StaticResource TitleStyle}"/>
             <Image Source="/Resources/Images/help.png" Width="12" Height="12" Visibility="{Binding HasHelp, ElementName=TitledTextBoxControl, Converter={StaticResource BoolToVisibilityCV}}"/>
-            <Button Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" KeyboardNavigation.IsTabStop="False" Visibility="{Binding HasToLowerCase, ElementName=TitledTextBoxControl, Converter={StaticResource BoolToVisibilityCV}}">
+            <Button Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" KeyboardNavigation.IsTabStop="False" Visibility="{Binding HasToLowerCase, ElementName=TitledTextBoxControl, Converter={StaticResource BoolToVisibilityCV}}" Click="Button_Click">
                 <Image Source="/Resources/Images/uppercase.png" Width="12" Height="12" />
             </Button>
         </StackPanel>
-        <TextBox Text="{Binding Text, ElementName=TitledTextBoxControl}"
-            Height="{Binding TextBoxHeight, ElementName=TitledTextBoxControl}" Margin="{Binding TextBoxMargin, ElementName=TitledTextBoxControl}"
-                 VerticalContentAlignment="Center" MaxWidth="{Binding TextBoxMaxWidth, ElementName=TitledTextBoxControl}" 
-                 TextWrapping="{Binding TextBoxTextWrapping, ElementName=TitledTextBoxControl}"
-                 AcceptsReturn="{Binding TextBoxAcceptsReturn, ElementName=TitledTextBoxControl}"
-                 HorizontalScrollBarVisibility="Disabled"
-                 VerticalScrollBarVisibility="Auto"/>
+        <Grid Margin="{Binding TitledTextBoxMargin, ElementName=TitledTextBoxControl}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Border x:Name="ReferenceBorder" Background="{x:Null}" Grid.Column="1"/>
+            <Label Content="{Binding PrefixText, ElementName=TitledTextBoxControl}" Grid.Column="0" Background="LightGray" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                   BorderThickness="1,1,0,1" BorderBrush="DimGray" Height="{Binding TextBoxHeight, ElementName=TitledTextBoxControl}"
+                   Visibility="{Binding PrefixText, ElementName=TitledTextBoxControl, Converter={StaticResource StringSetVisibilityCV}}"/>
+            <TextBox Text="{Binding Text, ElementName=TitledTextBoxControl}" Grid.Column="1" Grid.ColumnSpan="1"
+                     Height="{Binding TextBoxHeight, ElementName=TitledTextBoxControl}"
+                     Width="{Binding ElementName=ReferenceBorder, Path=ActualWidth}"
+                     VerticalContentAlignment="Center" HorizontalContentAlignment="{Binding TextBoxHorizontalContentAlignment, ElementName=TitledTextBoxControl}"
+                     MaxWidth="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Width}"
+                     MaxHeight="{Binding TextBoxMaxHeight, ElementName=TitledTextBoxControl}"
+                     TextWrapping="{Binding TextBoxTextWrapping, ElementName=TitledTextBoxControl}"
+                     AcceptsReturn="{Binding TextBoxAcceptsReturn, ElementName=TitledTextBoxControl}"
+                     HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" BorderBrush="DimGray"/>
+            <Label Content="{Binding PostfixText, ElementName=TitledTextBoxControl}" Grid.Column="2" Background="LightGray" HorizontalContentAlignment="Center"
+                   VerticalContentAlignment="Center" BorderThickness="0,1,1,1" BorderBrush="DimGray" Height="{Binding TextBoxHeight, ElementName=TitledTextBoxControl}"
+                   Visibility="{Binding PostfixText, ElementName=TitledTextBoxControl, Converter={StaticResource StringSetVisibilityCV}}"/>
+        </Grid>
     </DockPanel>
 </UserControl>

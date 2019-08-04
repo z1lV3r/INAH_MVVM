@@ -15,11 +15,7 @@ namespace INAH.Services
             {
                 case NavigationMode.SHOW:
                     window.Show();
-                    foreach (Window item in Application.Current.Windows)
-                    {
-                        BaseWindowViewModel vm = item.DataContext as BaseWindowViewModel;
-                        if (vm != null && vm.ViewId == windowId) item.Close();
-                    }
+                    Close(windowId);
                     break;
                 case NavigationMode.MODAL:
                     window.Show();
@@ -27,6 +23,13 @@ namespace INAH.Services
                 case NavigationMode.DIALOG:
                     window.ShowDialog();
                     break;
+            }
+        }
+        public void Close(Guid windowId)
+        {
+            foreach (Window item in Application.Current.Windows)
+            {
+                if (item.DataContext is BaseWindowViewModel vm && vm.ViewId == windowId) item.Close();
             }
         }
         public void NavigateToLogin(Guid windowId, NavigationMode navigationMode=NavigationMode.SHOW)

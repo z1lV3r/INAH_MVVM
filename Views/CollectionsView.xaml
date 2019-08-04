@@ -7,16 +7,25 @@
         mc:Ignorable="d"
         Title="{Binding Title, Mode=OneTime}"
         DataContext="{StaticResource CollectionsVM}"
-        Style="{StaticResource MyWindowStyle}" WindowStartupLocation="CenterScreen" Height="664" Width="942">
+        Style="{StaticResource WindowStyle}" WindowStartupLocation="CenterScreen" Height="664" Width="942">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
         <Label Content="{Binding Title, Mode=OneTime}" Style="{StaticResource WindowTitleStyle}"
-               Grid.Row="0"  Grid.ColumnSpan="3"
+               Grid.Row="0" Grid.Column="1"
                HorizontalAlignment="Center" />
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+        <Button Width="48" Height="48" Padding="5" Margin="0,0,10,0" Grid.Column="2" 
+                Background="{x:Null}" BorderBrush="{x:Null}" KeyboardNavigation.IsTabStop="False">
+            <Image Source="/Resources/Images/add.png"/>
+        </Button>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
             <ItemsControl ItemsSource="{Binding Items}" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>

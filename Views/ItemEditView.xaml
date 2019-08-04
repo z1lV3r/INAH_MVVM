@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="{Binding Title, Mode=OneTime}"
         DataContext="{StaticResource ItemEditVM}"
-        Style="{StaticResource MyWindowStyle}" WindowStartupLocation="CenterScreen" Height="664" Width="942">
+        Style="{StaticResource WindowStyle}"  WindowStartupLocation="CenterScreen" Height="664" Width="942">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
             <i:InvokeCommandAction Command="{Binding ReturnToCollections}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
@@ -19,13 +19,298 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Button Width="48" Height="48" Padding="5" Margin="10,0,0,0" Grid.Column="0" Grid.Row="0"
+                Background="{x:Null}" BorderBrush="{x:Null}" KeyboardNavigation.IsTabStop="False"
+                Command="{Binding BackToCollections}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
+            <Image Source="/Resources/Images/back.jpg"/>
+        </Button>
         <Label Content="{Binding Title, Mode=OneTime}" Style="{StaticResource WindowTitleStyle}"
-               Grid.Row="0"  Grid.ColumnSpan="3"
+               Grid.Row="0" Grid.Column="1"
                HorizontalAlignment="Center" />
-        <StackPanel Grid.Row="1">
-            <cc:TitledComboBox Title="Content: " ComboBoxItemsSource="{Binding Items}"/>
-            <cc:TitledTextBox Text="124" Title="kjm" HasHelp="True" HasToLowerCase="True" Width="100"/>
-            <cc:TitledTextBox Text="124" Title="kjm" HasHelp="False" Width="100"/>
-        </StackPanel>
+        <Button Width="48" Height="48" Padding="5" Margin="0,0,10,0" Grid.Column="2" Grid.Row="0"
+                Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" KeyboardNavigation.IsTabStop="False">
+            <Image Source="/Resources/Images/save.png"/>
+        </Button>
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Caracteristicas en panel izquierdo -->
+            <StackPanel Margin="10,0">
+                <!-- Imagen de la pieza -->
+                <Image Height="250" Width="Auto" Source="{Binding ImageSource}"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0">Adjuntar imagen</Button>
+                    <Label Content="{Binding ImageSource}" Margin="1,0,0,0" Width="Auto" Grid.Column="1" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF5D5D5D" />
+                </Grid>
+
+                <Label Content="Acervo" Style="{StaticResource CategoryTitleStyle}" />
+                <cc:TitledComboBox Title="Tipo: " ComboBoxItemsSource="{Binding Types}"></cc:TitledComboBox>
+
+                <Label Content="Conservación" Style="{StaticResource CategoryTitleStyle}"/>
+                <cc:TitledComboBox Title="Estado de la conservación:" ComboBoxItemsSource="{Binding ConservationTypes}" />
+
+                <Label Content="Avalúo" Style="{StaticResource CategoryTitleStyle}"/>
+                <cc:TitledTextBox
+                    Title="Avalúo:" Text="{Binding Valuation, Converter={StaticResource NumberToStringCV}}"
+                    HasToLowerCase="False" PrefixText="$" PostfixText="MXN" TitledTextBoxMargin="0" TextBoxHorizontalContentAlignment="Center"/>
+            </StackPanel>
+
+            <!-- Detalle de la pieza en panel derecho -->
+            <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <Grid Margin="10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Número de inventario -->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <Label Content="Número de inventario:" FontSize="16" FontWeight="Bold" />
+                        <Label x:Name="lblNoId" Content="{Binding StockNumber}" FontSize="16" />
+                    </StackPanel>
+
+                    <!-- Numeros -->
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Content="Numeros" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource CategoryTitleStyle}" Margin="0,0,0,2"/>
+
+                        <cc:TitledTextBox
+                            Title="Número de catálogo:" Text="{Binding CatalogNumber}"
+                            Grid.Column="0" Grid.Row="1"
+                            HasToLowerCase="False" TextBoxHeight="25"/>
+                        <cc:TitledTextBox 
+                            Title="Número de registro:" Text="{Binding RegistryNumber}"
+                            Grid.Column="1" Grid.Row="1"
+                            HasToLowerCase="False" TextBoxHeight="25"/>
+                        <cc:TitledTextBox 
+                            Title="Otros números:" Text="{Binding OtherNumber}"
+                            Grid.Column="2" Grid.Row="1"
+                            HasToLowerCase="False" TextBoxHeight="25"/>
+                    </Grid>
+
+                    <!-- Descripción básica -->
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Content="Descripción básica" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource CategoryTitleStyle}"/>
+
+                        <cc:TitledTextBox 
+                            Title="Tipo de objeto:*" Text="{Binding Type, Mode=TwoWay}"
+                            Grid.Column="0" Grid.Row="1" TextBoxHeight="25"/>
+                        <cc:TitledTextBox
+                            Title="Nombre o tema:*" Text="{Binding Subject, Mode=TwoWay}"
+                            Grid.Column="1" Grid.Row="1" TextBoxHeight="25"/>
+                        <cc:TitledTextBox
+                            Title="Autor:" Text="{Binding Author, Mode=TwoWay}"
+                            Grid.Column="2" Grid.Row="1" TextBoxHeight="25"/>
+                        <cc:TitledTextBox
+                            Title="Epoca:" Text="{Binding Period}"
+                            Grid.Column="0" Grid.Row="2" TextBoxHeight="25"/>
+                        <cc:TitledTextBox
+                            Title="Cultura:" Text="{Binding Culture}"
+                            Grid.Column="1" Grid.Row="2" TextBoxHeight="25"/>
+                        <cc:TitledTextBox
+                            Title="Lugar de origen:" Text="{Binding Origin}"
+                            Grid.Column="2" Grid.Row="2" TextBoxHeight="25"/>
+                    </Grid>
+
+                    <!-- Composición -->
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Content="Composición" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource CategoryTitleStyle}"/>
+
+                        <cc:TitledTextBox
+                            Title="Material constitutivo:*" Text="{Binding RawMaterial}"
+                            Grid.Column="0" Grid.Row="1" TextBoxHeight="25"/>
+                        <cc:TitledTextBox
+                            Title="Técnica de maufactura:" Text="{Binding ManufacturingTechnique}"
+                            Grid.Column="1" Grid.Row="1" TextBoxHeight="25"/>
+                        <cc:TitledTextBox
+                            Title="Técnica decorativa:" Text="{Binding DecorativeTechnique}"
+                            Grid.Column="2" Grid.Row="1" TextBoxHeight="25"/>
+                    </Grid>
+
+                    <!-- Adquisición -->
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Content="Adquisición" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource CategoryTitleStyle}"/>
+
+                        <cc:TitledTextBox
+                            Title="Procedencia:" Text="{Binding Provenance}"
+                            Grid.Column="0" Grid.Row="1" TextBoxHeight="25"/>
+                        <cc:TitledTextBox
+                            Title="Método de adquisición:" Text="{Binding Provenance}"
+                            Grid.Column="1" Grid.Row="1" TextBoxHeight="25"/>
+                    </Grid>
+
+                    <!-- Ubicación -->
+                    <Grid Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Content="Ubicación" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource CategoryTitleStyle}"/>
+
+                        <cc:TitledTextBox
+                            Title="Ubicación:" Text="{Binding Provenance}"
+                            Grid.Row="1" TextBoxHeight="25"/>
+                    </Grid>
+
+                    <!-- Verificación -->
+                    <Grid Grid.Row="6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Content="Verificación" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource CategoryTitleStyle}"/>
+
+                        <cc:TitledTextBox
+                            Title="Piezas que ampara este registro:" Text="{Binding CoveredPieces, Converter={StaticResource NumberToStringCV}}"
+                            Grid.Column="0" Grid.Row="1"
+                            HasHelp="False" HasToLowerCase="False"/>
+                        <DockPanel Grid.Column="1" Grid.Row="1">
+                            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                                <Label Content="Verificado: " Style="{StaticResource TitleStyle}"/>
+                            </StackPanel>
+                            <CheckBox x:Name="cbVerificado" />
+                        </DockPanel>
+                    </Grid>
+
+                    <!-- Medidas -->
+                    <Grid Grid.Row="7">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Content="Medidas" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Style="{StaticResource CategoryTitleStyle}" />
+
+                        <cc:TitledTextBox 
+                            Title="↕ Alto:" Text="{Binding Height, Converter={StaticResource NumberToStringCV}}"
+                            Grid.Column="0" Grid.Row="1"
+                            HasToLowerCase="False" TextBoxHorizontalContentAlignment="Center" PrefixText="cm" />
+                        <cc:TitledTextBox 
+                            Title="↔ Largo:" Text="{Binding Width, Converter={StaticResource NumberToStringCV}}"
+                            Grid.Column="1" Grid.Row="1"
+                            HasToLowerCase="False" TextBoxHorizontalContentAlignment="Center" PrefixText="cm" />
+                        <cc:TitledTextBox 
+                            Title="➚ Espesor:" Text="{Binding Length, Converter={StaticResource NumberToStringCV}}"
+                            Grid.Column="2" Grid.Row="1"
+                            HasToLowerCase="False" TextBoxHorizontalContentAlignment="Center" PrefixText="cm" />
+                        <cc:TitledTextBox 
+                            Title="Diámetro:" Text="{Binding Diameter, Converter={StaticResource NumberToStringCV}}"
+                            Grid.Column="3" Grid.Row="1"
+                            HasToLowerCase="False" TextBoxHorizontalContentAlignment="Center" PrefixText="cm" />
+                        <cc:TitledTextBox 
+                            Title="Peso:" Text="{Binding Weight, Converter={StaticResource NumberToStringCV}}"
+                            Grid.Column="4" Grid.Row="1"
+                            HasToLowerCase="False" TextBoxHorizontalContentAlignment="Center" PrefixText="cm" />
+                    </Grid>
+
+                    <!-- Descripción visual -->
+                    <Grid Grid.Row="8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Content="Descripción visual" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource CategoryTitleStyle}"/>
+
+                        <cc:TitledTextBox
+                            Title="Forma:" Text="{Binding Shape}"
+                            Grid.Column="0" Grid.Row="1"
+                            TextBoxHeight="100" TitledTextBoxMargin="0,0,20,0"
+                            TextBoxTextWrapping="Wrap" TextBoxAcceptsReturn="True"
+                            TextBoxMaxHeight="100"/>
+                        <cc:TitledTextBox
+                            Title="Descripción:" Text="{Binding Description}"
+                            Grid.Column="0" Grid.Row="2"
+                            TextBoxHeight="100" TitledTextBoxMargin="0,0,20,0"
+                            TextBoxTextWrapping="Wrap" TextBoxAcceptsReturn="True"
+                             TextBoxMaxHeight="100"/>
+                        <cc:TitledTextBox
+                            Title="Inscripciones:" Text="{Binding Inscriptions}"
+                            Grid.Column="1" Grid.Row="1"
+                            TextBoxHeight="100" TitledTextBoxMargin="0,0,20,0"
+                            TextBoxTextWrapping="Wrap" TextBoxAcceptsReturn="True"
+                             TextBoxMaxHeight="100"/>
+                        <cc:TitledTextBox
+                            Title="Observaciones:" Text="{Binding Remarks}"
+                            Grid.Column="1" Grid.Row="2"
+                            TextBoxHeight="100" TitledTextBoxMargin="0,0,20,0"
+                            TextBoxTextWrapping="Wrap" TextBoxAcceptsReturn="True"
+                             TextBoxMaxHeight="100"/>
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </Window>

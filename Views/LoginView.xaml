@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         DataContext="{StaticResource LoginVM}"
-        Style="{StaticResource MyWindowStyle}" WindowStartupLocation="CenterScreen">
+        Style="{StaticResource WindowStyle}" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
