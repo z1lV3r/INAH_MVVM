@@ -22,7 +22,8 @@
                Grid.Row="0" Grid.Column="1"
                HorizontalAlignment="Center" />
         <Button Width="48" Height="48" Padding="5" Margin="0,0,10,0" Grid.Column="2" 
-                Background="{x:Null}" BorderBrush="{x:Null}" KeyboardNavigation.IsTabStop="False">
+                Background="{x:Null}" BorderBrush="{x:Null}" KeyboardNavigation.IsTabStop="False"
+                Command="{Binding AddCommand}">
             <Image Source="/Resources/Images/add.png"/>
         </Button>
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">

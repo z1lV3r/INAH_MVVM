@@ -164,7 +164,9 @@
     </Compile>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\ItemDetailMeasureVisibilityConverter.cs" />
+    <Compile Include="Converters\ItemImageConverter.cs" />
     <Compile Include="Converters\NumberToStringConverter.cs" />
+    <Compile Include="Converters\SourcePathToFileNameConverter.cs" />
     <Compile Include="Converters\StringSetVisibilityConverter.cs" />
     <Compile Include="Models\adquisiciones.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
@@ -229,6 +231,8 @@
     <Compile Include="Models\verificaciones.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Services\DataServices\PiecesDataService.cs" />
+    <Compile Include="Services\FileService.cs" />
     <Compile Include="Services\NavigatorService.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ViewModels\Abstracts\BaseItemOpWindowViewModel.cs" />
@@ -291,6 +295,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Resources\Images\notFound.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Images\edit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

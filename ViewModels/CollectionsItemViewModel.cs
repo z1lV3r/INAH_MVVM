@@ -2,6 +2,7 @@
 using INAH.Services;
 using INAH.ViewModels.Abstracts;
 using System.Windows;
+using INAH.Services.DataServices;
 
 namespace INAH.ViewModels
 {
@@ -32,11 +33,17 @@ namespace INAH.ViewModels
         public RelayCommand EditCommand { get; private set; }
         public RelayCommand DeleteCommand { get; private set; }
 
-        public CollectionsItemViewModel(string id, string image, string name)
+        private PiecesDataService piecesDataService;
+        private FileService fileService;
+
+        public CollectionsItemViewModel(string id)
         {
+            piecesDataService = new PiecesDataService();
+            fileService = new FileService();
+            
             Id = id;
-            Image = image;
-            Name = name;
+            Image = fileService.GetImagePath(id);
+            Name = piecesDataService.GetName(id);
             ShowDetailCommand = new RelayCommand(ShowDetailCommandExec);
             EditCommand = new RelayCommand(EditCommandExec);
             DeleteCommand = new RelayCommand(DeleteCommandExec);
@@ -54,7 +61,11 @@ namespace INAH.ViewModels
 
         public void DeleteCommandExec(object args)
         {
-            MessageBox.Show(name);
+            MessageBoxResult res = MessageBox.Show("¿Estas seguro que deseas eliminar el elemento " + Name + "?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (res.Equals(MessageBoxResult.Yes))
+            {
+                piecesDataService.Delete(Id);
+            }
         }
     }
 }

@@ -14,14 +14,19 @@
                         </Grid>
                     </ItemsPanelTemplate>
                 </StatusBar.ItemsPanel>
+                <StatusBarItem Grid.Column="0" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse x:Name="statusIcon" Height="15" Stroke="Black" Width="15" StrokeThickness="0.5" Margin="0,0,5,0" Fill="{Binding Path=DataContext.StatusColor, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        <Label x:Name="statusLabel" Content="{Binding Path=DataContext.StatusText, RelativeSource={RelativeSource TemplatedParent}}" FontSize="11" Padding="0,0,3,0"/>
+                    </StackPanel>
+                </StatusBarItem>
                 <StatusBarItem Grid.Column="1" HorizontalAlignment="Center">
                     <Label Content="{Binding Path=DataContext.Rights, RelativeSource={RelativeSource TemplatedParent}}"
                            VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"/>
                 </StatusBarItem>
-                <StatusBarItem Grid.Column="2" HorizontalAlignment="Right">
+                <StatusBarItem Grid.Column="0" HorizontalAlignment="Right">
                     <StackPanel Orientation="Horizontal">
-                        <Label x:Name="statusLabel" Content="{Binding Path=DataContext.StatusText, RelativeSource={RelativeSource TemplatedParent}}" FontSize="11" Padding="0,0,3,0"/>
-                        <Ellipse x:Name="statusIcon" Height="15" Stroke="Black" Width="15" StrokeThickness="0.5" Margin="0,0,5,0" Fill="{Binding Path=DataContext.StatusColor, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        <!--todo: Add progressbar-->
                     </StackPanel>
                 </StatusBarItem>
             </StatusBar>

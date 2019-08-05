@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Win32;
 
 namespace INAH.ViewModels
 {
@@ -18,6 +19,8 @@ namespace INAH.ViewModels
         public ObservableCollection<string> Types { get; set; }
 
         public ObservableCollection<string> ConservationTypes { get; set; }
+
+        public RelayCommand LinkImageCommand { get; set; }
 
         public ItemEditViewModel()
         {
@@ -37,6 +40,24 @@ namespace INAH.ViewModels
             ConservationTypes.Add("Requiere intervencion");
             ConservationTypes.Add("Requiere intervencion urgente");
             ConservationTypes.Add("En riesgo");
+
+            LinkImageCommand = new RelayCommand(LinkImageCommandExec);
+        }
+
+        private void LinkImageCommandExec(object obj)
+        {
+            var dlg = new OpenFileDialog
+            {
+                DefaultExt = ".png|.jpg|.jpeg",
+                Filter = "PNG Files (*.png)|*.png|JPEG Files (*.jpeg)|*.jpeg|JPG Files (*.jpg)|*.jpg"
+            };
+
+            var result = dlg.ShowDialog();
+
+            if (result.HasValue && result.Value)
+            {
+                ImageSource = dlg.FileName;
+            }
         }
     }
 }

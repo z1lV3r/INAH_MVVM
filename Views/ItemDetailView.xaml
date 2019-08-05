@@ -123,7 +123,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Image Height="350" Width="Auto" Grid.Row="0" Grid.Column="0" Source="{Binding ImageSource}"/>
+                <Image Height="350" Width="Auto" Grid.Row="0" Grid.Column="0" Source="{Binding ImageSource, Converter={StaticResource ItemImageCV}}"/>
                 <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">
                     <cc:ItemDetailMeasure
                         MeasureName="Alto: " MeasureValue="{Binding Height, Mode=OneWay}"

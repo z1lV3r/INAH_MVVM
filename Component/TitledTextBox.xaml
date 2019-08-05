@@ -10,7 +10,7 @@
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
             <Label Content="{Binding Title, ElementName=TitledTextBoxControl}" Style="{StaticResource TitleStyle}"/>
-            <Image Source="/Resources/Images/help.png" Width="12" Height="12" Visibility="{Binding HasHelp, ElementName=TitledTextBoxControl, Converter={StaticResource BoolToVisibilityCV}}"/>
+            <Image Source="/Resources/Images/help.png" Width="12" Height="12" Visibility="{Binding HelpText, ElementName=TitledTextBoxControl, Converter={StaticResource StringSetVisibilityCV}}" ToolTip="{Binding HelpText, ElementName=TitledTextBoxControl}"/>
             <Button Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" KeyboardNavigation.IsTabStop="False" Visibility="{Binding HasToLowerCase, ElementName=TitledTextBoxControl, Converter={StaticResource BoolToVisibilityCV}}" Click="Button_Click">
                 <Image Source="/Resources/Images/uppercase.png" Width="12" Height="12" />
             </Button>

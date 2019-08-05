@@ -5,4 +5,6 @@
     <cv:ItemDetailMeasureVisibilityConverter x:Key="ItemDetailMeasureVisibilityCV"/>
     <cv:BoolToVisibilityConverter x:Key="BoolToVisibilityCV"/>
     <cv:NumberToStringConverter x:Key="NumberToStringCV" />
+    <cv:SourcePathToFileNameConverter x:Key="SourcePathToFileNameCV"/>
+    <cv:ItemImageConverter x:Key="ItemImageCV"/>
 </ResourceDictionary>
