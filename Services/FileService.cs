@@ -11,7 +11,7 @@ namespace INAH.Services
     {
         public string GetImagePath(string id)
         {
-            var files = Directory.GetFiles(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Images"), "*" + id.ToString() + "*");
+            var files = Directory.GetFiles(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Images"), id.ToString() + "*");
             return files.Length > 0 ? files.First() : "/Resources/Images/notFound.png";
         }
     }
