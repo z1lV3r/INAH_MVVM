@@ -10,7 +10,7 @@
                 <ResourceDictionary Source="/Resources/Dictionaries/Styles/CollectionsItemImageButtonStyle.xaml"/>
                 <ResourceDictionary Source="/Resources/Dictionaries/Styles/CategoryTitleStyle.xaml"/>
                 <ResourceDictionary Source="/Resources/Dictionaries/Styles/TitleStyle.xaml"/>
-                <ResourceDictionary Source="/Resources/Dictionaries/ViewModels.xaml"/>
+                <ResourceDictionary Source="/Resources/Dictionaries/DesignViewModels.xaml"/>
                 <ResourceDictionary Source="/Resources/Dictionaries/Converters.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

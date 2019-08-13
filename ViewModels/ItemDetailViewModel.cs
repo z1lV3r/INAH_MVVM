@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace INAH.ViewModels
 {
-    class ItemDetailViewModel : BaseItemOpWindowViewModel
+    public class ItemDetailViewModel : BaseItemOpWindowViewModel
     {
         private static Guid viewId;
         public override Guid ViewId { get { return viewId; } }

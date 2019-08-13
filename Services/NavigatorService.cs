@@ -41,13 +41,13 @@ namespace INAH.Services
             Show(windowId, view, navigationMode);
         }
 
-        public void NativigateToCollections(Guid windowId, string user, NavigationMode navigationMode = NavigationMode.SHOW)
+        public void NativigateToCollections(Guid windowId, int userId, NavigationMode navigationMode = NavigationMode.SHOW)
         {
             CollectionsView view = new CollectionsView()
             {
                 DataContext = new CollectionsViewModel()
                 {
-                    User = user
+                    UserId = userId
                 }
             };
             Show(windowId, view, navigationMode);

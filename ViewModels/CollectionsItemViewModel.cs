@@ -36,6 +36,7 @@ namespace INAH.ViewModels
         private PiecesDataService piecesDataService;
         private FileService fileService;
 
+        public  CollectionsItemViewModel() { }
         public CollectionsItemViewModel(string id)
         {
             piecesDataService = new PiecesDataService();

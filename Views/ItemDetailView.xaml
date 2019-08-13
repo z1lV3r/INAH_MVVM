@@ -7,7 +7,7 @@
         xmlns:cc="clr-namespace:INAH.Component"
         mc:Ignorable="d"
         Title="{Binding Title, Mode=OneTime}"
-        DataContext="{StaticResource ItemDetailVM}"
+        d:DataContext="{StaticResource ItemDetailDesign}"
         Style="{StaticResource WindowStyle}" WindowStartupLocation="CenterScreen" Height="664" Width="942">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">

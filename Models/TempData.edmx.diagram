@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="724fc3a2a21c495887d0c75037de918c" Name="Diagram1">
+        <EntityTypeShape EntityType="TempDataModel.History" Width="1.5" PointX="3.375" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TempDataModel.Piece_Details" Width="1.5" PointX="5.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TempDataModel.Pieces" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TempDataModel.Users" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="TempDataModel.FK__History__00000000000000B0" ManuallyRouted="false" />
+        <AssociationConnector Association="TempDataModel.FK__History__00000000000000B4" ManuallyRouted="false" />
+        <AssociationConnector Association="TempDataModel.FK__Piece_Details__0000000000000098" ManuallyRouted="false" />
+        <AssociationConnector Association="TempDataModel.FK__Pieces__0000000000000036" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

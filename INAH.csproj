@@ -137,7 +137,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Dictionaries\ViewModels.xaml">
+    <Page Include="Resources\Dictionaries\DesignViewModels.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -183,6 +183,33 @@
     <Compile Include="Converters\NumberToStringConverter.cs" />
     <Compile Include="Converters\SourcePathToFileNameConverter.cs" />
     <Compile Include="Converters\StringSetVisibilityConverter.cs" />
+    <Compile Include="Models\History.cs">
+      <DependentUpon>TempDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Pieces.cs">
+      <DependentUpon>TempDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Piece_Details.cs">
+      <DependentUpon>TempDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TempDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TempDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TempDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TempDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TempDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TempDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Users.cs">
+      <DependentUpon>TempDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Services\DataServices\PiecesDataService.cs" />
     <Compile Include="Services\FileService.cs" />
     <Compile Include="Services\NavigatorService.cs" />
@@ -192,6 +219,11 @@
     <Compile Include="ViewModels\CollectionsItemViewModel.cs" />
     <Compile Include="ViewModels\CollectionsViewModel.cs" />
     <Compile Include="ViewModels\Abstracts\IRequireViewIdentification.cs" />
+    <Compile Include="ViewModels\Design\CollectionsDesignViewModel.cs" />
+    <Compile Include="ViewModels\Design\CollectionsItemDesignViewModel.cs" />
+    <Compile Include="ViewModels\Design\ItemDetailDesignViewModel.cs" />
+    <Compile Include="ViewModels\Design\ItemEditDesignViewModel.cs" />
+    <Compile Include="ViewModels\Design\LoginDesignViewModel.cs" />
     <Compile Include="ViewModels\ItemDetailViewModel.cs" />
     <Compile Include="ViewModels\ItemEditViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -229,6 +261,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Models\TempDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TempDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\TempDataModel.edmx.diagram">
+      <DependentUpon>TempDataModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -238,9 +277,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\Images\notFound.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -289,6 +326,16 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Models\TempDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TempDataModel.edmx</DependentUpon>
+      <LastGenOutput>TempDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\TempDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TempDataModel.edmx</DependentUpon>
+      <LastGenOutput>TempDataModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Resources\TempData.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

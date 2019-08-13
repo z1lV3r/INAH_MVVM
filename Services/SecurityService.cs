@@ -8,5 +8,10 @@ namespace INAH.Services
         {
             return true;
         }
+
+        internal string cypherPass(string password)
+        {
+            return password;
+        }
     }
 }

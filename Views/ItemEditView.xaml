@@ -7,7 +7,7 @@
         xmlns:cc="clr-namespace:INAH.Component"
         mc:Ignorable="d"
         Title="{Binding Title, Mode=OneTime}"
-        DataContext="{StaticResource ItemEditVM}"
+        d:DataContext="{StaticResource ItemEditDesign}"
         Style="{StaticResource WindowStyle}"  WindowStartupLocation="CenterScreen" MinHeight="700" Width="942">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">

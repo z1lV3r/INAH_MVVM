@@ -6,7 +6,7 @@
         xmlns:comp="clr-namespace:INAH.Component"
         mc:Ignorable="d"
         Title="{Binding Title, Mode=OneTime}"
-        DataContext="{StaticResource CollectionsVM}"
+        d:DataContext="{StaticResource CollectionsDesign}"
         Style="{StaticResource WindowStyle}" WindowStartupLocation="CenterScreen" Height="664" Width="942">
     <Grid>
         <Grid.RowDefinitions>

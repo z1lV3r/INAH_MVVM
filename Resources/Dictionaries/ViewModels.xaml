@@ -1,8 +1,0 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:vm="clr-namespace:INAH.ViewModels">
-    <vm:LoginViewModel x:Key="LoginVM" />
-    <vm:CollectionsViewModel x:Key="CollectionsVM" />
-    <vm:ItemDetailViewModel x:Key="ItemDetailVM" />
-    <vm:ItemEditViewModel x:Key="ItemEditVM" />
-</ResourceDictionary>

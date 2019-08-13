@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:INAH.ViewModels.Design">
+    <vm:LoginDesignViewModel x:Key="LoginDesign" />
+    <vm:CollectionsDesignViewModel x:Key="CollectionsDesign" />
+    <vm:CollectionsItemDesignViewModel x:Key="CollectionsItemDesign" />
+    <vm:ItemDetailDesignViewModel x:Key="ItemDetailDesign" />
+    <vm:ItemEditDesignViewModel x:Key="ItemEditDesign" />
+</ResourceDictionary>

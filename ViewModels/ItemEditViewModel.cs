@@ -11,7 +11,7 @@ using Microsoft.Win32;
 
 namespace INAH.ViewModels
 {
-    class ItemEditViewModel : BaseItemOpWindowViewModel
+    public class ItemEditViewModel : BaseItemOpWindowViewModel
     {
         private static Guid viewId;
         public override Guid ViewId => viewId;
