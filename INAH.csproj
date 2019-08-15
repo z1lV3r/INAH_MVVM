@@ -183,6 +183,8 @@
     <Compile Include="Converters\NumberToStringConverter.cs" />
     <Compile Include="Converters\SourcePathToFileNameConverter.cs" />
     <Compile Include="Converters\StringSetVisibilityConverter.cs" />
+    <Compile Include="Exceptions\BaseException.cs" />
+    <Compile Include="Exceptions\Ex.cs" />
     <Compile Include="Exceptions\ExceptionHandler.cs" />
     <Compile Include="Models\History.cs">
       <DependentUpon>TempDataModel.tt</DependentUpon>

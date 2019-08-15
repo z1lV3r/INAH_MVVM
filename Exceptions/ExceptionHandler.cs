@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -24,9 +21,32 @@ namespace INAH.Exceptions
                 HandleException(e.Exception, "TaskScheduler.UnobservedTaskException");
         }
 
-        private void HandleException(Exception exception, string source)
+        private static void HandleException(Exception exception, string source)
         {
+            if (exception is BaseException e)
+            {
+                if (e.TargetSite.ReflectedType != null)
+                    MessageBox.Show(Utils.GetWindowFromViewModelId(e.TargetSite.ReflectedType.GetField("viewId").), e.Message,
+                        e.Tittle, MessageBoxButton.OK, getIcon(e.Severity));
+            }
+            else
+            {
+                MessageBox.Show("Ocurrió un error inesperado al tratar de realizar la operación.", "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK, MessageBoxOptions.DefaultDesktopOnly);
+            }
+        }
 
+        private static MessageBoxImage getIcon(BaseException.SeverityType severity)
+        {
+            switch (severity)
+            {
+                case BaseException.SeverityType.Info:
+                    return MessageBoxImage.Information;
+                case BaseException.SeverityType.Warning:
+                    return MessageBoxImage.Warning;
+                default:
+                    return MessageBoxImage.Error;
+            }
         }
     }
 }

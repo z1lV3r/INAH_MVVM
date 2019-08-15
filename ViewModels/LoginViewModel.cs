@@ -4,6 +4,7 @@ using INAH.ViewModels.Abstracts;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using INAH.Exceptions;
 
 namespace INAH.ViewModels
 {
@@ -36,8 +37,7 @@ namespace INAH.ViewModels
             {
                 SecurityService.authenticate(Email, pass);
                 //upsert mail password
-                Window window = Utils.GetWindowFromViewModelId(viewId);
-                MessageBox.Show(window, "");
+                throw new Ex(){Code = 500, Severity = BaseException.SeverityType.Error, Tittle = "titulo"};
             }
 
             //select mail and password
