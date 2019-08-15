@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using System.Windows;
+using INAH.Exceptions;
 
 namespace INAH
 {
@@ -15,5 +16,10 @@ namespace INAH
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            new ExceptionHandler().StartListeners();
+        }
     }
 }

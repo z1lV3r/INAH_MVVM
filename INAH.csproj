@@ -183,6 +183,7 @@
     <Compile Include="Converters\NumberToStringConverter.cs" />
     <Compile Include="Converters\SourcePathToFileNameConverter.cs" />
     <Compile Include="Converters\StringSetVisibilityConverter.cs" />
+    <Compile Include="Exceptions\ExceptionHandler.cs" />
     <Compile Include="Models\History.cs">
       <DependentUpon>TempDataModel.tt</DependentUpon>
     </Compile>
@@ -214,6 +215,7 @@
     <Compile Include="Services\FileService.cs" />
     <Compile Include="Services\NavigatorService.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="Utils.cs" />
     <Compile Include="ViewModels\Abstracts\BaseItemOpWindowViewModel.cs" />
     <Compile Include="ViewModels\Abstracts\BaseWindowViewModel.cs" />
     <Compile Include="ViewModels\CollectionsItemViewModel.cs" />

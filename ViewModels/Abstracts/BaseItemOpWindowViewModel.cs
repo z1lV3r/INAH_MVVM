@@ -255,7 +255,7 @@ namespace INAH.ViewModels.Abstracts
 
         public void ReturnToCollectionsExec(object args)
         {
-            navigatorService.NativigateToCollections(ViewId, CollectionsViewModel.user, NavigatorService.NavigationMode.MODAL);
+            navigatorService.NativigateToCollections(ViewId, CollectionsViewModel.userId, NavigatorService.NavigationMode.MODAL);
         }
 
         public void BackToCollectionsExec(object args)

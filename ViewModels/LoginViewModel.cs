@@ -10,7 +10,7 @@ namespace INAH.ViewModels
     public class LoginViewModel : BaseWindowViewModel
     {
         private static Guid viewId;
-        public override Guid ViewId { get { return viewId; } }
+        public override Guid ViewId => viewId;
         public string Email { get; set; }
         public RelayCommand LoginCommand { get; private set; }
 
@@ -27,16 +27,23 @@ namespace INAH.ViewModels
         public void LoginCommandExec(object args)
         {
             PasswordBox passwordBox = args as PasswordBox;
-            string password = passwordBox.Password;
-            if(SecurityService.authenticate(Email, password))
+
+            var pass = SecurityService.cypherPass(passwordBox.Password);
+
+            int userId;
+
+            if (IsOnline)
             {
-                string user="";
-                navigatorService.NativigateToCollections(ViewId, user);
+                SecurityService.authenticate(Email, pass);
+                //upsert mail password
+                Window window = Utils.GetWindowFromViewModelId(viewId);
+                MessageBox.Show(window, "");
             }
-            else
-            {
-                MessageBox.Show("La contraseña y el correo proporcionado no coinciden en los registros.", "Error de autenticación", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+
+            //select mail and password
+            userId = 0;
+
+            navigatorService.NativigateToCollections(ViewId, userId);
         }
     }
 }
