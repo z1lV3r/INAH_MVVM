@@ -10,7 +10,7 @@ namespace INAH.ViewModels
 {
     public class LoginViewModel : BaseWindowViewModel
     {
-        private static Guid viewId;
+        public static Guid viewId;
         public override Guid ViewId => viewId;
         public string Email { get; set; }
         public RelayCommand LoginCommand { get; private set; }
@@ -37,7 +37,7 @@ namespace INAH.ViewModels
             {
                 SecurityService.authenticate(Email, pass);
                 //upsert mail password
-                throw new Ex(){Code = 500, Severity = BaseException.SeverityType.Error, Tittle = "titulo"};
+                throw new Ex(){Code = 500, Severity = BaseException.SeverityType.Warning, Tittle = "titulo", Description = "texto en el cuerpo"};
             }
 
             //select mail and password

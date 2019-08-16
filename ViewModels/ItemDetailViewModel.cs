@@ -11,7 +11,7 @@ namespace INAH.ViewModels
 {
     public class ItemDetailViewModel : BaseItemOpWindowViewModel
     {
-        private static Guid viewId;
+        public static Guid viewId;
         public override Guid ViewId { get { return viewId; } }
 
         public ItemDetailViewModel()

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace INAH.Exceptions
 {
@@ -10,29 +12,40 @@ namespace INAH.Exceptions
         {
             //From all threads in the AppDomain.
             AppDomain.CurrentDomain.UnhandledException += (s, e) =>
-                HandleException((Exception)e.ExceptionObject, "AppDomain.CurrentDomain.UnhandledException");
+                HandleException((Exception)e.ExceptionObject, e);
 
             //From the main UI dispatcher thread in your WPF application.
             Application.Current.DispatcherUnhandledException += (s, e) =>
-                HandleException(e.Exception, "Application.Current.DispatcherUnhandledException");
+                HandleException(e.Exception, e);
 
             //from within each AppDomain that uses a task scheduler for asynchronous operations.
             TaskScheduler.UnobservedTaskException += (s, e) =>
-                HandleException(e.Exception, "TaskScheduler.UnobservedTaskException");
+                HandleException(e.Exception, e);
         }
 
-        private static void HandleException(Exception exception, string source)
+        private static void HandleException(Exception exception, EventArgs args)
         {
             if (exception is BaseException e)
             {
                 if (e.TargetSite.ReflectedType != null)
-                    MessageBox.Show(Utils.GetWindowFromViewModelId(e.TargetSite.ReflectedType.GetField("viewId").), e.Message,
-                        e.Tittle, MessageBoxButton.OK, getIcon(e.Severity));
+                {
+                    var field = e.TargetSite.ReflectedType.GetField("viewId",
+                        System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
+                    if (field != null)
+                    {
+                        MessageBox.Show(Utils.GetWindowFromViewModelId((Guid)field.GetValue(null)), e.Description,e.Tittle, MessageBoxButton.OK, getIcon(e.Severity));
+                    }
+                }
             }
             else
             {
                 MessageBox.Show("Ocurrió un error inesperado al tratar de realizar la operación.", "Error",
                     MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK, MessageBoxOptions.DefaultDesktopOnly);
+            }
+
+            if (args is DispatcherUnhandledExceptionEventArgs a)
+            {
+                a.Handled = true;
             }
         }
 

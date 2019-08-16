@@ -13,7 +13,7 @@ namespace INAH.ViewModels
 {
     public class ItemEditViewModel : BaseItemOpWindowViewModel
     {
-        private static Guid viewId;
+        public static Guid viewId;
         public override Guid ViewId => viewId;
 
         public ObservableCollection<string> Types { get; set; }
