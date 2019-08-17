@@ -184,8 +184,8 @@
     <Compile Include="Converters\SourcePathToFileNameConverter.cs" />
     <Compile Include="Converters\StringSetVisibilityConverter.cs" />
     <Compile Include="Exceptions\BaseException.cs" />
-    <Compile Include="Exceptions\Ex.cs" />
     <Compile Include="Exceptions\ExceptionHandler.cs" />
+    <Compile Include="Exceptions\InvalidLoginDataException.cs" />
     <Compile Include="Models\History.cs">
       <DependentUpon>TempDataModel.tt</DependentUpon>
     </Compile>
@@ -214,8 +214,10 @@
       <DependentUpon>TempDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\DataServices\PiecesDataService.cs" />
+    <Compile Include="Services\DataServices\UsersDataService.cs" />
     <Compile Include="Services\FileService.cs" />
     <Compile Include="Services\NavigatorService.cs" />
+    <Compile Include="Services\WebConsumerService.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="ViewModels\Abstracts\BaseItemOpWindowViewModel.cs" />

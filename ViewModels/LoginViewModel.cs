@@ -5,6 +5,8 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using INAH.Exceptions;
+using INAH.Models;
+using INAH.Services.DataServices;
 
 namespace INAH.ViewModels
 {
@@ -15,35 +17,38 @@ namespace INAH.ViewModels
         public string Email { get; set; }
         public RelayCommand LoginCommand { get; private set; }
 
-        private SecurityService SecurityService;
+        private SecurityService securityService;
+
+        private WebConsumerService webConsumerService;
+
+        private UsersDataService usersDataService;
 
         public LoginViewModel()
         {
             viewId = Guid.NewGuid();
             Title = "Inicio de sesión";
             LoginCommand = new RelayCommand(LoginCommandExec);
-            SecurityService = new SecurityService();
+            securityService = new SecurityService();
+            webConsumerService = new WebConsumerService();
+            usersDataService = new UsersDataService();
         }
 
         public void LoginCommandExec(object args)
         {
-            PasswordBox passwordBox = args as PasswordBox;
+            var passwordBox = args as PasswordBox;
 
-            var pass = SecurityService.cypherPass(passwordBox.Password);
-
-            int userId;
+            var password = securityService.CypherPass(passwordBox.Password);
 
             if (IsOnline)
             {
-                SecurityService.authenticate(Email, pass);
-                //upsert mail password
-                throw new Ex(){Code = 500, Severity = BaseException.SeverityType.Warning, Tittle = "titulo", Description = "texto en el cuerpo"};
+                var user = webConsumerService.Login(Email, password);
+                usersDataService.Upsert(user);
             }
 
-            //select mail and password
-            userId = 0;
+            var local = usersDataService.Find(new Users() {Email = Email, Password = password});
+            if (local == null) throw new InvalidLoginDataException();
 
-            navigatorService.NativigateToCollections(ViewId, userId);
+            navigatorService.NativigateToCollections(ViewId, local.Id);
         }
     }
 }
