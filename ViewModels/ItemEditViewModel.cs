@@ -7,6 +7,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using INAH.Models;
+using INAH.Services.DataServices;
 using Microsoft.Win32;
 
 namespace INAH.ViewModels
@@ -20,36 +22,49 @@ namespace INAH.ViewModels
 
         public ObservableCollection<string> ConservationTypes { get; set; }
 
+        public RelayCommand SaveCommand { get; set; }
         public RelayCommand LinkImageCommand { get; set; }
 
-        public ItemEditViewModel()
+        private PieceDetailsDataService pieceDetailsDataService;
+        private PiecesDataService piecesDataService;
+        protected ItemEditViewModel() { }
+        public ItemEditViewModel(int id)
         {
 
             viewId = Guid.NewGuid();
+            pieceDetailsDataService = new PieceDetailsDataService();
+            piecesDataService = new PiecesDataService();
+
             Title = "Edición de elemento";
 
-            Types = new ObservableCollection<string>();
-            Types.Add("Arqueológico");
-            Types.Add("Histórico");
-            Types.Add("Paleontológico");
-            Types.Add("Etnográfico");
-            Types.Add("Contemporáneo");
+            Types = new ObservableCollection<string>
+            {
+                "Arqueológico","Histórico","Paleontológico","Etnográfico","Contemporáneo"
+            };
 
-            ConservationTypes = new ObservableCollection<string>();
-            ConservationTypes.Add("No requiere intervencion");
-            ConservationTypes.Add("Requiere intervencion");
-            ConservationTypes.Add("Requiere intervencion urgente");
-            ConservationTypes.Add("En riesgo");
+            ConservationTypes = new ObservableCollection<string>
+            {
+                "No requiere intervencion", "Requiere intervencion", "Requiere intervencion urgente", "En riesgo"
+            };
 
             LinkImageCommand = new RelayCommand(LinkImageCommandExec);
+            SaveCommand = new RelayCommand(SaveCommandExec);
+
+
+        }
+
+        private void SaveCommandExec(object obj)
+        {
+            piecesDataService.Upsert(new Pieces());
+            pieceDetailsDataService.Upsert(new Piece_Details());
+            navigatorService.Close(ViewId);
         }
 
         private void LinkImageCommandExec(object obj)
         {
             var dlg = new OpenFileDialog
             {
-                DefaultExt = ".png|.jpg|.jpeg",
-                Filter = "PNG Files (*.png)|*.png|JPEG Files (*.jpeg)|*.jpeg|JPG Files (*.jpg)|*.jpg"
+                Filter = " Images |*.png;*.jpg;*.jpeg;| PNG Files (*.png) |*.png| JPEG Files (*.jpeg) |*.jpeg| JPG Files (*.jpg) |*.jpg"
             };
 
             var result = dlg.ShowDialog();

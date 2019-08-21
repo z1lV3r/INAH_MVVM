@@ -26,6 +26,8 @@ namespace INAH.Models
         }
     
         public virtual DbSet<History> History { get; set; }
+        public virtual DbSet<Identifiers> Identifiers { get; set; }
+        public virtual DbSet<Measures> Measures { get; set; }
         public virtual DbSet<Piece_Details> Piece_Details { get; set; }
         public virtual DbSet<Pieces> Pieces { get; set; }
         public virtual DbSet<Users> Users { get; set; }

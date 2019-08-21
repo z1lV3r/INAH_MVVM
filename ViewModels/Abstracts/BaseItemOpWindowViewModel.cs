@@ -13,13 +13,13 @@ namespace INAH.ViewModels.Abstracts
         private string imageSource; //imagen
 
         //numeros from table pieza
-        private string stockNumber; //Numero_de_inventario (generado)
+        private int stockNumber; //Numero_de_inventario (generado)
         private string catalogNumber; //Numero_de_catalogo
         private string registryNumber; //Numero_de_registro
         private string otherNumber; //Otro_numero
 
         //verificacion from table pieza
-        private int coveredPieces; //Cantidad_ampara
+        private int? coveredPieces; //Cantidad_ampara
 
         //descripcion basica from table descripcion
         private string type; //Tipo_de_objeto
@@ -39,10 +39,10 @@ namespace INAH.ViewModels.Abstracts
         private string collection; //Acervo
 
         //conservacion from table description
-        private int conservationType; //Conservacion
+        private int? conservationType; //Conservacion
 
         //avaluo from table description
-        private double valuation; //Avaluo
+        private double? valuation; //Avaluo
 
         //composicion from table composicion
         private string rawMaterial; //Materia_prima
@@ -69,7 +69,7 @@ namespace INAH.ViewModels.Abstracts
             set { imageSource = value; NotifyPropertyChanged(); }
         } 
 
-        public string StockNumber
+        public int StockNumber
         {
             get => stockNumber;
             set { stockNumber = value; NotifyPropertyChanged(); }
@@ -93,7 +93,7 @@ namespace INAH.ViewModels.Abstracts
             set { otherNumber = value; NotifyPropertyChanged(); }
         }
 
-        public int CoveredPieces
+        public int? CoveredPieces
         {
             get => coveredPieces;
             set { coveredPieces = value; NotifyPropertyChanged(); }
@@ -166,13 +166,13 @@ namespace INAH.ViewModels.Abstracts
         }
 
 
-        public int ConservationType
+        public int? ConservationType
         {
             get => conservationType;
             set { conservationType = value; NotifyPropertyChanged(); }
         }
 
-        public double Valuation
+        public double? Valuation
         {
             get => valuation;
             set { valuation = value; NotifyPropertyChanged(); }
@@ -255,7 +255,7 @@ namespace INAH.ViewModels.Abstracts
 
         public void ReturnToCollectionsExec(object args)
         {
-            navigatorService.NativigateToCollections(ViewId, CollectionsViewModel.userId, NavigatorService.NavigationMode.MODAL);
+            navigatorService.NavigateToCollections(ViewId, CollectionsViewModel.userId, NavigatorService.NavigationMode.MODAL);
         }
 
         public void BackToCollectionsExec(object args)

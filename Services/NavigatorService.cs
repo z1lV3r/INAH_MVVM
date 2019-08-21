@@ -41,19 +41,16 @@ namespace INAH.Services
             Show(windowId, view, navigationMode);
         }
 
-        public void NativigateToCollections(Guid windowId, int userId, NavigationMode navigationMode = NavigationMode.SHOW)
+        public void NavigateToCollections(Guid windowId, int userId, NavigationMode navigationMode = NavigationMode.SHOW)
         {
             CollectionsView view = new CollectionsView()
             {
-                DataContext = new CollectionsViewModel()
-                {
-                    UserId = userId
-                }
+                DataContext = new CollectionsViewModel(userId)
             };
             Show(windowId, view, navigationMode);
         }
 
-        public void NavigateToItemDetail(Guid windowId, string id, NavigationMode navigationMode = NavigationMode.SHOW)
+        public void NavigateToItemDetail(Guid windowId, int id, NavigationMode navigationMode = NavigationMode.SHOW)
         {
             ItemDetailView view = new ItemDetailView()
             {
@@ -65,14 +62,11 @@ namespace INAH.Services
             Show(windowId, view, navigationMode);
         }
 
-        public void NavigateToItemEdit(Guid windowId, string id, NavigationMode navigationMode = NavigationMode.SHOW)
+        public void NavigateToItemEdit(Guid windowId, int id, NavigationMode navigationMode = NavigationMode.SHOW)
         {
             ItemEditView view = new ItemEditView()
             {
-                DataContext = new ItemEditViewModel()
-                {
-                    StockNumber = id
-                }
+                DataContext = new ItemEditViewModel(id)
             };
             Show(windowId, view, navigationMode);
         }

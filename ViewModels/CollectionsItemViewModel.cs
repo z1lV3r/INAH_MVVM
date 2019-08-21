@@ -10,7 +10,7 @@ namespace INAH.ViewModels
     {
         private string image;
         private string name;
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Image
         {
             get => image;
@@ -29,22 +29,20 @@ namespace INAH.ViewModels
                 NotifyPropertyChanged();
             }
         }
-        public RelayCommand ShowDetailCommand { get; private set; }
-        public RelayCommand EditCommand { get; private set; }
-        public RelayCommand DeleteCommand { get; private set; }
+        public RelayCommand ShowDetailCommand { get; protected set; }
+        public RelayCommand EditCommand { get; protected set; }
+        public RelayCommand DeleteCommand { get; protected set; }
 
-        private PiecesDataService piecesDataService;
-        private FileService fileService;
+        protected PiecesDataService piecesDataService;
+        protected PieceDetailsDataService pieceDetailsDataService;
+        protected FileService fileService;
 
-        public  CollectionsItemViewModel() { }
-        public CollectionsItemViewModel(string id)
+        public CollectionsItemViewModel()
         {
             piecesDataService = new PiecesDataService();
+            pieceDetailsDataService = new PieceDetailsDataService();
             fileService = new FileService();
-            
-            Id = id;
-            Image = fileService.GetImagePath(id);
-            Name = piecesDataService.GetName(id);
+
             ShowDetailCommand = new RelayCommand(ShowDetailCommandExec);
             EditCommand = new RelayCommand(EditCommandExec);
             DeleteCommand = new RelayCommand(DeleteCommandExec);
@@ -62,10 +60,12 @@ namespace INAH.ViewModels
 
         public void DeleteCommandExec(object args)
         {
-            MessageBoxResult res = MessageBox.Show("¿Estas seguro que deseas eliminar el elemento " + Name + "?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            var res = MessageBox.Show("¿Estas seguro que deseas eliminar el elemento " + Name + "?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (res.Equals(MessageBoxResult.Yes))
             {
+                pieceDetailsDataService.Delete(Id);
                 piecesDataService.Delete(Id);
+                MessageBox.Show("Borrado");
             }
         }
     }

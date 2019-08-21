@@ -18,6 +18,8 @@ namespace INAH.Models
         public Pieces()
         {
             this.History = new HashSet<History>();
+            this.Identifiers = new HashSet<Identifiers>();
+            this.Measures = new HashSet<Measures>();
         }
     
         public int TempId { get; set; }
@@ -27,6 +29,10 @@ namespace INAH.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<History> History { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Identifiers> Identifiers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Measures> Measures { get; set; }
         public virtual Piece_Details Piece_Details { get; set; }
         public virtual Users Users { get; set; }
     }

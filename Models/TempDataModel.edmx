@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TempDataModel.Store" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="History">
           <Key>
             <PropertyRef Name="HistoryDate" />
@@ -16,6 +16,24 @@
           <Property Name="PreviousValue" Type="ntext" />
           <Property Name="CurrentValue" Type="ntext" />
           <Property Name="TempId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Identifiers">
+          <Key>
+            <PropertyRef Name="TempId" />
+            <PropertyRef Name="Type" />
+          </Key>
+          <Property Name="TempId" Type="int" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Measures">
+          <Key>
+            <PropertyRef Name="TempId" />
+            <PropertyRef Name="Type" />
+          </Key>
+          <Property Name="TempId" Type="int" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Value" Type="real" Nullable="false" />
         </EntityType>
         <EntityType Name="Piece_Details">
           <Key>
@@ -33,7 +51,7 @@
           <Property Name="Remarks" Type="ntext" />
           <Property Name="Collection" Type="nvarchar" MaxLength="100" />
           <Property Name="ConservationType" Type="int" />
-          <Property Name="Valuation" Type="int" />
+          <Property Name="Valuation" Type="real" />
           <Property Name="Inscriptions" Type="ntext" />
           <Property Name="Provenance" Type="nvarchar" MaxLength="900" />
           <Property Name="AcquisitionMethod" Type="nvarchar" MaxLength="900" />
@@ -85,7 +103,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Piece_Details__0000000000000098">
+        <Association Name="FK__Identifiers__000000000000012C">
+          <End Role="Pieces" Type="Self.Pieces" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Identifiers" Type="Self.Identifiers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pieces">
+              <PropertyRef Name="TempId" />
+            </Principal>
+            <Dependent Role="Identifiers">
+              <PropertyRef Name="TempId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Measures__000000000000011C">
+          <End Role="Pieces" Type="Self.Pieces" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Measures" Type="Self.Measures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pieces">
+              <PropertyRef Name="TempId" />
+            </Principal>
+            <Dependent Role="Measures">
+              <PropertyRef Name="TempId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Piece_Details__000000000000010A">
           <End Role="Pieces" Type="Self.Pieces" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -113,8 +159,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ModelStoreContainer">
+        <EntityContainer Name="TempDataModelStoreContainer">
           <EntitySet Name="History" EntityType="Self.History" store:Type="Tables" />
+          <EntitySet Name="Identifiers" EntityType="Self.Identifiers" store:Type="Tables" />
+          <EntitySet Name="Measures" EntityType="Self.Measures" store:Type="Tables" />
           <EntitySet Name="Piece_Details" EntityType="Self.Piece_Details" store:Type="Tables" />
           <EntitySet Name="Pieces" EntityType="Self.Pieces" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" store:Type="Tables" />
@@ -126,7 +174,15 @@
             <End Role="Pieces" EntitySet="Pieces" />
             <End Role="History" EntitySet="History" />
           </AssociationSet>
-          <AssociationSet Name="FK__Piece_Details__0000000000000098" Association="Self.FK__Piece_Details__0000000000000098">
+          <AssociationSet Name="FK__Identifiers__000000000000012C" Association="Self.FK__Identifiers__000000000000012C">
+            <End Role="Pieces" EntitySet="Pieces" />
+            <End Role="Identifiers" EntitySet="Identifiers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Measures__000000000000011C" Association="Self.FK__Measures__000000000000011C">
+            <End Role="Pieces" EntitySet="Pieces" />
+            <End Role="Measures" EntitySet="Measures" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Piece_Details__000000000000010A" Association="Self.FK__Piece_Details__000000000000010A">
             <End Role="Pieces" EntitySet="Pieces" />
             <End Role="Piece_Details" EntitySet="Piece_Details" />
           </AssociationSet>
@@ -139,7 +195,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="TempDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="History">
           <Key>
             <PropertyRef Name="HistoryDate" />
@@ -153,6 +209,26 @@
           <Property Name="TempId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.FK__History__00000000000000B0" FromRole="History" ToRole="Users" />
           <NavigationProperty Name="Pieces" Relationship="Self.FK__History__00000000000000B4" FromRole="History" ToRole="Pieces" />
+        </EntityType>
+        <EntityType Name="Identifiers">
+          <Key>
+            <PropertyRef Name="TempId" />
+            <PropertyRef Name="Type" />
+          </Key>
+          <Property Name="TempId" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Pieces" Relationship="Self.FK__Identifiers__000000000000012C" FromRole="Identifiers" ToRole="Pieces" />
+        </EntityType>
+        <EntityType Name="Measures">
+          <Key>
+            <PropertyRef Name="TempId" />
+            <PropertyRef Name="Type" />
+          </Key>
+          <Property Name="TempId" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Value" Type="Single" Nullable="false" />
+          <NavigationProperty Name="Pieces" Relationship="Self.FK__Measures__000000000000011C" FromRole="Measures" ToRole="Pieces" />
         </EntityType>
         <EntityType Name="Piece_Details">
           <Key>
@@ -170,7 +246,7 @@
           <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Collection" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ConservationType" Type="Int32" />
-          <Property Name="Valuation" Type="Int32" />
+          <Property Name="Valuation" Type="Single" />
           <Property Name="Inscriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Provenance" Type="String" MaxLength="900" FixedLength="false" Unicode="true" />
           <Property Name="AcquisitionMethod" Type="String" MaxLength="900" FixedLength="false" Unicode="true" />
@@ -178,7 +254,7 @@
           <Property Name="ManufacturingTechnique" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="DecorativeTechnique" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="Location" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Pieces" Relationship="Self.FK__Piece_Details__0000000000000098" FromRole="Piece_Details" ToRole="Pieces" />
+          <NavigationProperty Name="Pieces" Relationship="Self.FK__Piece_Details__000000000000010A" FromRole="Piece_Details" ToRole="Pieces" />
         </EntityType>
         <EntityType Name="Pieces">
           <Key>
@@ -189,7 +265,9 @@
           <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="CreatedBy" Type="Int32" Nullable="false" />
           <NavigationProperty Name="History" Relationship="Self.FK__History__00000000000000B4" FromRole="Pieces" ToRole="History" />
-          <NavigationProperty Name="Piece_Details" Relationship="Self.FK__Piece_Details__0000000000000098" FromRole="Pieces" ToRole="Piece_Details" />
+          <NavigationProperty Name="Identifiers" Relationship="Self.FK__Identifiers__000000000000012C" FromRole="Pieces" ToRole="Identifiers" />
+          <NavigationProperty Name="Measures" Relationship="Self.FK__Measures__000000000000011C" FromRole="Pieces" ToRole="Measures" />
+          <NavigationProperty Name="Piece_Details" Relationship="Self.FK__Piece_Details__000000000000010A" FromRole="Pieces" ToRole="Piece_Details" />
           <NavigationProperty Name="Users" Relationship="Self.FK__Pieces__0000000000000036" FromRole="Pieces" ToRole="Users" />
         </EntityType>
         <EntityType Name="Users">
@@ -228,7 +306,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Piece_Details__0000000000000098">
+        <Association Name="FK__Identifiers__000000000000012C">
+          <End Role="Pieces" Type="Self.Pieces" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Identifiers" Type="Self.Identifiers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pieces">
+              <PropertyRef Name="TempId" />
+            </Principal>
+            <Dependent Role="Identifiers">
+              <PropertyRef Name="TempId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Measures__000000000000011C">
+          <End Role="Pieces" Type="Self.Pieces" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Measures" Type="Self.Measures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pieces">
+              <PropertyRef Name="TempId" />
+            </Principal>
+            <Dependent Role="Measures">
+              <PropertyRef Name="TempId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Piece_Details__000000000000010A">
           <End Role="Pieces" Type="Self.Pieces" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -258,6 +364,8 @@
         </Association>
         <EntityContainer Name="TempDataEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="History" EntityType="Self.History" />
+          <EntitySet Name="Identifiers" EntityType="Self.Identifiers" />
+          <EntitySet Name="Measures" EntityType="Self.Measures" />
           <EntitySet Name="Piece_Details" EntityType="Self.Piece_Details" />
           <EntitySet Name="Pieces" EntityType="Self.Pieces" />
           <EntitySet Name="Users" EntityType="Self.Users" />
@@ -269,7 +377,15 @@
             <End Role="Pieces" EntitySet="Pieces" />
             <End Role="History" EntitySet="History" />
           </AssociationSet>
-          <AssociationSet Name="FK__Piece_Details__0000000000000098" Association="Self.FK__Piece_Details__0000000000000098">
+          <AssociationSet Name="FK__Identifiers__000000000000012C" Association="Self.FK__Identifiers__000000000000012C">
+            <End Role="Pieces" EntitySet="Pieces" />
+            <End Role="Identifiers" EntitySet="Identifiers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Measures__000000000000011C" Association="Self.FK__Measures__000000000000011C">
+            <End Role="Pieces" EntitySet="Pieces" />
+            <End Role="Measures" EntitySet="Measures" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Piece_Details__000000000000010A" Association="Self.FK__Piece_Details__000000000000010A">
             <End Role="Pieces" EntitySet="Pieces" />
             <End Role="Piece_Details" EntitySet="Piece_Details" />
           </AssociationSet>
@@ -283,9 +399,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="TempDataEntities">
+        <EntityContainerMapping StorageEntityContainer="TempDataModelStoreContainer" CdmEntityContainer="TempDataEntities">
           <EntitySetMapping Name="History">
-            <EntityTypeMapping TypeName="Model.History">
+            <EntityTypeMapping TypeName="TempDataModel.History">
               <MappingFragment StoreEntitySet="History">
                 <ScalarProperty Name="HistoryDate" ColumnName="HistoryDate" />
                 <ScalarProperty Name="Field" ColumnName="Field" />
@@ -296,8 +412,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Identifiers">
+            <EntityTypeMapping TypeName="TempDataModel.Identifiers">
+              <MappingFragment StoreEntitySet="Identifiers">
+                <ScalarProperty Name="TempId" ColumnName="TempId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Measures">
+            <EntityTypeMapping TypeName="TempDataModel.Measures">
+              <MappingFragment StoreEntitySet="Measures">
+                <ScalarProperty Name="TempId" ColumnName="TempId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Piece_Details">
-            <EntityTypeMapping TypeName="Model.Piece_Details">
+            <EntityTypeMapping TypeName="TempDataModel.Piece_Details">
               <MappingFragment StoreEntitySet="Piece_Details">
                 <ScalarProperty Name="TempId" ColumnName="TempId" />
                 <ScalarProperty Name="CoveredPieces" ColumnName="CoveredPieces" />
@@ -323,7 +457,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Pieces">
-            <EntityTypeMapping TypeName="Model.Pieces">
+            <EntityTypeMapping TypeName="TempDataModel.Pieces">
               <MappingFragment StoreEntitySet="Pieces">
                 <ScalarProperty Name="TempId" ColumnName="TempId" />
                 <ScalarProperty Name="Subject" ColumnName="Subject" />
@@ -333,7 +467,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="Model.Users">
+            <EntityTypeMapping TypeName="TempDataModel.Users">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

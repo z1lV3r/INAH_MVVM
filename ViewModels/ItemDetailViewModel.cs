@@ -23,7 +23,7 @@ namespace INAH.ViewModels
             OtherNumber = "OtherNumber example";
             CoveredPieces = 3;
             Type = "Type example";
-            StockNumber = "StockNumber example";
+            StockNumber = 1234;
             Subject = "Subject example";
             Author = "Author example";
             Period = "Period example";

@@ -11,7 +11,7 @@ namespace INAH.Exceptions
         public InvalidLoginDataException()
         {
             Severity = SeverityType.Error;
-            Tittle = "Error";
+            Tittle = "Datos incorrectos";
             Description = "Los datos proporcionados no son validos. Intente nuevamente.";
         }
     }

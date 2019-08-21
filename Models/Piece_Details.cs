@@ -26,7 +26,7 @@ namespace INAH.Models
         public string Remarks { get; set; }
         public string Collection { get; set; }
         public Nullable<int> ConservationType { get; set; }
-        public Nullable<int> Valuation { get; set; }
+        public Nullable<float> Valuation { get; set; }
         public string Inscriptions { get; set; }
         public string Provenance { get; set; }
         public string AcquisitionMethod { get; set; }

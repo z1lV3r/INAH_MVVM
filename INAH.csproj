@@ -189,6 +189,12 @@
     <Compile Include="Models\History.cs">
       <DependentUpon>TempDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Identifiers.cs">
+      <DependentUpon>TempDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Measures.cs">
+      <DependentUpon>TempDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Pieces.cs">
       <DependentUpon>TempDataModel.tt</DependentUpon>
     </Compile>
@@ -213,6 +219,7 @@
     <Compile Include="Models\Users.cs">
       <DependentUpon>TempDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Services\DataServices\PieceDetailsDataService.cs" />
     <Compile Include="Services\DataServices\PiecesDataService.cs" />
     <Compile Include="Services\DataServices\UsersDataService.cs" />
     <Compile Include="Services\FileService.cs" />
