@@ -50,7 +50,38 @@ namespace INAH.ViewModels
             LinkImageCommand = new RelayCommand(LinkImageCommandExec);
             SaveCommand = new RelayCommand(SaveCommandExec);
 
+            var piece = piecesDataService.Find(id);
+            var details = pieceDetailsDataService.Find(id);
 
+            StockNumber = piece.TempId;
+            CatalogNumber = piece.Identifiers.FirstOrDefault(pieceId => (pieceId.Type == "Catalog"))?.Value;
+            RegistryNumber = piece.Identifiers.FirstOrDefault(pieceId => (pieceId.Type == "Registry"))?.Value;
+            OtherNumber = piece.Identifiers.FirstOrDefault(pieceId => (pieceId.Type == "Other"))?.Value;
+            CoveredPieces = details.CoveredPieces;
+            Type = details.Type;
+            Subject = piece.Subject;
+            Author = details.Author;
+            Period = details.Period;
+            Culture = details.Culture;
+            Origin = details.Origin;
+            Shape = details.Shape;
+            Inscriptions = details.Inscriptions;
+            Description = details.Description;
+            Remarks = details.Remarks;
+            Collection = details.Collection;
+            ConservationType = details.ConservationType;
+            Valuation = details.Valuation;
+            RawMaterial = details.RawMaterial;
+            ManufacturingTechnique = details.ManufacturingTechnique;
+            DecorativeTechnique = details.DecorativeTechnique;
+            Provenance = details.Provenance;
+            AcquisitionMethod = details.AcquisitionMethod;
+            Location = details.Location;
+            Height = piece.Measures.FirstOrDefault(measure => (measure.Type == "Height"))?.Value ?? default;
+            Width = piece.Measures.FirstOrDefault(measure => (measure.Type == "Width"))?.Value ?? default;
+            Length = piece.Measures.FirstOrDefault(measure => (measure.Type == "Length"))?.Value ?? default;
+            Diameter = piece.Measures.FirstOrDefault(measure => (measure.Type == "Diameter"))?.Value ?? default;
+            Weight = piece.Measures.FirstOrDefault(measure => (measure.Type == "Weight"))?.Value ?? default;
         }
 
         private void SaveCommandExec(object obj)
