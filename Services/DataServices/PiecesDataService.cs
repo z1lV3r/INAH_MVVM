@@ -27,9 +27,13 @@ namespace INAH.Services.DataServices
         {
             using (var dataEntities = new TempDataEntities())
             {
-                var newPiece = dataEntities.Pieces.FirstOrDefault(piece => piece.TempId == pieces.TempId) ?? new Pieces();
-                //TODO: map properties
-                if (newPiece.TempId == default) dataEntities.Pieces.Add(newPiece);
+                var newPiece = new Pieces
+                {
+                    Subject = pieces.Subject, CreatedBy = pieces.CreatedBy, TempId = pieces.TempId
+                };
+
+                dataEntities.Pieces.Add(newPiece);
+                
                 dataEntities.SaveChanges();
             }
         }
@@ -38,7 +42,11 @@ namespace INAH.Services.DataServices
         {
             using (var dataEntities = new TempDataEntities())
             {
-                return dataEntities.Pieces.FirstOrDefault(piece => piece.TempId == id);
+                return dataEntities.Pieces.FirstOrDefault(piece => piece.TempId == id) ?? 
+                       new Pieces()
+                       {
+                           TempId = dataEntities.Pieces.ToList().Count > 0 ? dataEntities.Pieces.Max(table => table.TempId) : 1
+                       };
             }
         }
     }

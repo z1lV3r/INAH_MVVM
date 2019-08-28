@@ -8,6 +8,7 @@ namespace INAH.ViewModels
 {
     public class CollectionsItemViewModel : BaseViewModel
     {
+        private int userId;
         private string image;
         private string name;
         public int Id { get; set; }
@@ -39,6 +40,11 @@ namespace INAH.ViewModels
 
         public CollectionsItemViewModel()
         {
+        }
+        public CollectionsItemViewModel(int userId)
+        {
+            this.userId = userId;
+
             piecesDataService = new PiecesDataService();
             pieceDetailsDataService = new PieceDetailsDataService();
             fileService = new FileService();
@@ -55,7 +61,7 @@ namespace INAH.ViewModels
 
         public void EditCommandExec(object args)
         {
-            navigatorService.NavigateToItemEdit(CollectionsViewModel.viewId, Id);
+            navigatorService.NavigateToItemEdit(CollectionsViewModel.viewId, userId, Id);
         }
 
         public void DeleteCommandExec(object args)

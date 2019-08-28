@@ -62,11 +62,11 @@ namespace INAH.Services
             Show(windowId, view, navigationMode);
         }
 
-        public void NavigateToItemEdit(Guid windowId, int id, NavigationMode navigationMode = NavigationMode.SHOW)
+        public void NavigateToItemEdit(Guid windowId, int id, int userId, NavigationMode navigationMode = NavigationMode.SHOW)
         {
             ItemEditView view = new ItemEditView()
             {
-                DataContext = new ItemEditViewModel(id)
+                DataContext = new ItemEditViewModel(id, userId)
             };
             Show(windowId, view, navigationMode);
         }

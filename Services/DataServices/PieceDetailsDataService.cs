@@ -18,8 +18,30 @@ namespace INAH.Services.DataServices
             using (var dataEntities = new TempDataEntities())
             {
                 var newDetail = dataEntities.Piece_Details.FirstOrDefault(detail => detail.TempId == pieceDetails.TempId) ?? new Piece_Details();
-                //TODO: map properties
-                if (newDetail.TempId == default) dataEntities.Piece_Details.Add(newDetail);
+                newDetail.CoveredPieces = pieceDetails.CoveredPieces;
+                newDetail.Type = pieceDetails.Type;
+                newDetail.Author = pieceDetails.Author;
+                newDetail.Period = pieceDetails.Period;
+                newDetail.Culture = pieceDetails.Culture;
+                newDetail.Origin = pieceDetails.Origin;
+                newDetail.Shape = pieceDetails.Shape;
+                newDetail.Inscriptions = pieceDetails.Inscriptions;
+                newDetail.Description = pieceDetails.Description;
+                newDetail.Remarks = pieceDetails.Remarks;
+                newDetail.Collection = pieceDetails.Collection;
+                newDetail.ConservationType = pieceDetails.ConservationType;
+                newDetail.Valuation = pieceDetails.Valuation;
+                newDetail.RawMaterial = pieceDetails.RawMaterial;
+                newDetail.ManufacturingTechnique = pieceDetails.ManufacturingTechnique;
+                newDetail.DecorativeTechnique = pieceDetails.DecorativeTechnique;
+                newDetail.Provenance = pieceDetails.Provenance;
+                newDetail.AcquisitionMethod = pieceDetails.AcquisitionMethod;
+                newDetail.Location = pieceDetails.Location;
+                if (newDetail.TempId == default)
+                {
+                    newDetail.TempId = pieceDetails.TempId;
+                    dataEntities.Piece_Details.Add(newDetail);
+                }
                 dataEntities.SaveChanges();
             }
 

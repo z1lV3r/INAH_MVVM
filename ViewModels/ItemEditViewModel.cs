@@ -27,13 +27,18 @@ namespace INAH.ViewModels
 
         private PieceDetailsDataService pieceDetailsDataService;
         private PiecesDataService piecesDataService;
+        private IdentifiersDataService identifiersService;
+        private MeasuresDataService measuresDataService;
         protected ItemEditViewModel() { }
-        public ItemEditViewModel(int id)
+        public ItemEditViewModel(int id, int userId)
         {
+            this.userId = userId;
 
             viewId = Guid.NewGuid();
             pieceDetailsDataService = new PieceDetailsDataService();
             piecesDataService = new PiecesDataService();
+            identifiersService = new IdentifiersDataService();
+            measuresDataService = new MeasuresDataService();
 
             Title = "Edición de elemento";
 
@@ -51,12 +56,12 @@ namespace INAH.ViewModels
             SaveCommand = new RelayCommand(SaveCommandExec);
 
             var piece = piecesDataService.Find(id);
-            var details = pieceDetailsDataService.Find(id);
+            var details = pieceDetailsDataService.Find(id)?? new Piece_Details();
 
             StockNumber = piece.TempId;
-            CatalogNumber = piece.Identifiers.FirstOrDefault(pieceId => (pieceId.Type == "Catalog"))?.Value;
-            RegistryNumber = piece.Identifiers.FirstOrDefault(pieceId => (pieceId.Type == "Registry"))?.Value;
-            OtherNumber = piece.Identifiers.FirstOrDefault(pieceId => (pieceId.Type == "Other"))?.Value;
+            CatalogNumber = identifiersService.GetIdentifier(id, "Catalog");
+            RegistryNumber = identifiersService.GetIdentifier(id, "Registry");
+            OtherNumber = identifiersService.GetIdentifier(id, "Other");
             CoveredPieces = details.CoveredPieces;
             Type = details.Type;
             Subject = piece.Subject;
@@ -77,17 +82,44 @@ namespace INAH.ViewModels
             Provenance = details.Provenance;
             AcquisitionMethod = details.AcquisitionMethod;
             Location = details.Location;
-            Height = piece.Measures.FirstOrDefault(measure => (measure.Type == "Height"))?.Value ?? default;
-            Width = piece.Measures.FirstOrDefault(measure => (measure.Type == "Width"))?.Value ?? default;
-            Length = piece.Measures.FirstOrDefault(measure => (measure.Type == "Length"))?.Value ?? default;
-            Diameter = piece.Measures.FirstOrDefault(measure => (measure.Type == "Diameter"))?.Value ?? default;
-            Weight = piece.Measures.FirstOrDefault(measure => (measure.Type == "Weight"))?.Value ?? default;
+            Height = measuresDataService.GetMeasure(id, "Height");
+            Width = measuresDataService.GetMeasure(id, "Width");
+            Length = measuresDataService.GetMeasure(id, "Length");
+            Diameter = measuresDataService.GetMeasure(id, "Diameter");
+            Weight = measuresDataService.GetMeasure(id, "Weight");
         }
 
         private void SaveCommandExec(object obj)
         {
-            piecesDataService.Upsert(new Pieces());
-            pieceDetailsDataService.Upsert(new Piece_Details());
+            piecesDataService.Upsert(new Pieces()
+            {
+                Subject = Subject,
+                TempId = StockNumber,
+                CreatedBy = userId
+            });
+            pieceDetailsDataService.Upsert(new Piece_Details()
+            {
+                TempId = StockNumber,
+                CoveredPieces = CoveredPieces,
+                Type = Type,
+                Author = Author,
+                Period = Period,
+                Culture = Culture,
+                Origin = Origin,
+                Shape = Shape,
+                Inscriptions = Inscriptions,
+                Description = Description,
+                Remarks = Remarks,
+                Collection = Collection,
+                ConservationType = ConservationType,
+                Valuation = Valuation,
+                RawMaterial = RawMaterial,
+                ManufacturingTechnique = ManufacturingTechnique,
+                DecorativeTechnique = DecorativeTechnique,
+                Provenance = Provenance,
+                AcquisitionMethod = AcquisitionMethod,
+                Location = Location
+        });
             navigatorService.Close(ViewId);
         }
 

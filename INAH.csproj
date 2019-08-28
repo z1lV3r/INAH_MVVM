@@ -219,6 +219,8 @@
     <Compile Include="Models\Users.cs">
       <DependentUpon>TempDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Services\DataServices\IdentifiersDataService.cs" />
+    <Compile Include="Services\DataServices\MeasuresDataService.cs" />
     <Compile Include="Services\DataServices\PieceDetailsDataService.cs" />
     <Compile Include="Services\DataServices\PiecesDataService.cs" />
     <Compile Include="Services\DataServices\UsersDataService.cs" />
@@ -290,7 +292,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\Images\notFound.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -348,9 +349,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TempDataModel.edmx</DependentUpon>
       <LastGenOutput>TempDataModel.cs</LastGenOutput>
-    </Content>
-    <Content Include="Resources\TempData.sdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

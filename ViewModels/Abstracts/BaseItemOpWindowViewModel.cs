@@ -42,7 +42,7 @@ namespace INAH.ViewModels.Abstracts
         private int? conservationType; //Conservacion
 
         //avaluo from table description
-        private double? valuation; //Avaluo
+        private float? valuation; //Avaluo
 
         //composicion from table composicion
         private string rawMaterial; //Materia_prima
@@ -62,6 +62,8 @@ namespace INAH.ViewModels.Abstracts
         private float length; //Largo
         private float diameter; //Diametro
         private float weight; //Peso
+
+        protected int userId;
 
         public string ImageSource
         {
@@ -172,7 +174,7 @@ namespace INAH.ViewModels.Abstracts
             set { conservationType = value; NotifyPropertyChanged(); }
         }
 
-        public double? Valuation
+        public float? Valuation
         {
             get => valuation;
             set { valuation = value; NotifyPropertyChanged(); }
@@ -247,7 +249,7 @@ namespace INAH.ViewModels.Abstracts
         public RelayCommand ReturnToCollections { get; private set; }
         public RelayCommand BackToCollections { get; private set; }
 
-        public BaseItemOpWindowViewModel()
+        protected BaseItemOpWindowViewModel()
         {
             ReturnToCollections = new RelayCommand(ReturnToCollectionsExec);
             BackToCollections = new RelayCommand(BackToCollectionsExec);

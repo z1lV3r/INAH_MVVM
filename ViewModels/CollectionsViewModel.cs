@@ -27,6 +27,7 @@ namespace INAH.ViewModels
 
         public CollectionsViewModel(int userId)
         {
+            this.UserId = userId;
             piecesDataService = new PiecesDataService();
             
             viewId = Guid.NewGuid();
@@ -35,7 +36,7 @@ namespace INAH.ViewModels
             foreach (var piece in piecesDataService.FindAll())
             {
                 Items.Add(
-                    new CollectionsItemViewModel()
+                    new CollectionsItemViewModel(userId)
                     {
                         Id = piece.TempId,
                         Name = piece.Subject,
@@ -54,7 +55,7 @@ namespace INAH.ViewModels
 
         public void AddCommandExec(object args)
         {
-            navigatorService.NavigateToItemEdit(viewId, default);
+            navigatorService.NavigateToItemEdit(viewId, default, userId);
         }
     }
 }
