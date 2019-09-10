@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:cv="clr-namespace:INAH.Converters">
     <cv:StringSetVisibilityConverter x:Key="StringSetVisibilityCV"/>
+    <cv:IntegerSetVisibilityConverter x:Key="IntegerSetVisibilityCV"/>
     <cv:ItemDetailMeasureVisibilityConverter x:Key="ItemDetailMeasureVisibilityCV"/>
     <cv:BoolToVisibilityConverter x:Key="BoolToVisibilityCV"/>
     <cv:NumberToStringConverter x:Key="NumberToStringCV" />

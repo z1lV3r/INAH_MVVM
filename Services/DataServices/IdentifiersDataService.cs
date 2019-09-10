@@ -16,5 +16,22 @@ namespace INAH.Services.DataServices
                 return entities.Identifiers.FirstOrDefault(identifier => identifier.TempId == id && identifier.Type == type)?.Value;
             }
         }
+
+        public void Upsert(int id, string type, string value)
+        {
+            using (var entities = new TempDataEntities())
+            {
+                var identifier = entities.Identifiers.FirstOrDefault(i => i.TempId == id && i.Type == type);
+                if (identifier == default)
+                {
+                    identifier = new Identifiers();
+                    entities.Identifiers.Add(identifier);
+                }
+                identifier.TempId = id;
+                identifier.Type = type;
+                identifier.Value = value;
+                entities.SaveChanges();
+            }
+        }
     }
 }

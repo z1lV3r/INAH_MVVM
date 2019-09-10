@@ -18,7 +18,7 @@ namespace INAH.ViewModels
 
         public override Guid ViewId => viewId;
         public int UserId { get => userId; set => userId = value; }
-        public ObservableCollection<CollectionsItemViewModel> Items { get; protected set; }
+        public static ObservableCollection<CollectionsItemViewModel> Items { get; protected set; }
 
         public RelayCommand AddCommand { get; set; }
 

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using INAH.Models;
+using INAH.Services.DataServices;
 
 namespace INAH.ViewModels.Abstracts
 {
@@ -64,6 +66,11 @@ namespace INAH.ViewModels.Abstracts
         private float weight; //Peso
 
         protected int userId;
+
+        protected PieceDetailsDataService pieceDetailsDataService;
+        protected PiecesDataService piecesDataService;
+        protected IdentifiersDataService identifiersService;
+        protected MeasuresDataService measuresDataService;
 
         public string ImageSource
         {
@@ -249,10 +256,48 @@ namespace INAH.ViewModels.Abstracts
         public RelayCommand ReturnToCollections { get; private set; }
         public RelayCommand BackToCollections { get; private set; }
 
-        protected BaseItemOpWindowViewModel()
+        protected BaseItemOpWindowViewModel() { }
+        protected BaseItemOpWindowViewModel(int id, int userId)
         {
+            pieceDetailsDataService = new PieceDetailsDataService();
+            piecesDataService = new PiecesDataService();
+            identifiersService = new IdentifiersDataService();
+            measuresDataService = new MeasuresDataService();
             ReturnToCollections = new RelayCommand(ReturnToCollectionsExec);
             BackToCollections = new RelayCommand(BackToCollectionsExec);
+
+            var piece = piecesDataService.Find(id);
+            var details = pieceDetailsDataService.Find(id) ?? new Piece_Details();
+
+            StockNumber = piece.TempId;
+            CatalogNumber = identifiersService.GetIdentifier(id, "Catalog");
+            RegistryNumber = identifiersService.GetIdentifier(id, "Registry");
+            OtherNumber = identifiersService.GetIdentifier(id, "Other");
+            CoveredPieces = details.CoveredPieces;
+            Type = details.Type;
+            Subject = piece.Subject;
+            Author = details.Author;
+            Period = details.Period;
+            Culture = details.Culture;
+            Origin = details.Origin;
+            Shape = details.Shape;
+            Inscriptions = details.Inscriptions;
+            Description = details.Description;
+            Remarks = details.Remarks;
+            Collection = details.Collection;
+            ConservationType = details.ConservationType;
+            Valuation = details.Valuation;
+            RawMaterial = details.RawMaterial;
+            ManufacturingTechnique = details.ManufacturingTechnique;
+            DecorativeTechnique = details.DecorativeTechnique;
+            Provenance = details.Provenance;
+            AcquisitionMethod = details.AcquisitionMethod;
+            Location = details.Location;
+            Height = measuresDataService.GetMeasure(id, "Height");
+            Width = measuresDataService.GetMeasure(id, "Width");
+            Length = measuresDataService.GetMeasure(id, "Length");
+            Diameter = measuresDataService.GetMeasure(id, "Diameter");
+            Weight = measuresDataService.GetMeasure(id, "Weight");
         }
 
         public void ReturnToCollectionsExec(object args)

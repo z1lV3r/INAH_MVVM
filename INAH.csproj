@@ -178,6 +178,7 @@
       <DependentUpon>TitledTextBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\IntegerSetVisibilityConverter.cs" />
     <Compile Include="Converters\ItemDetailMeasureVisibilityConverter.cs" />
     <Compile Include="Converters\ItemImageConverter.cs" />
     <Compile Include="Converters\NumberToStringConverter.cs" />

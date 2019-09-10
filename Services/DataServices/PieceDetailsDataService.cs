@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using INAH.Models;
 
 namespace INAH.Services.DataServices
@@ -45,11 +46,6 @@ namespace INAH.Services.DataServices
                 dataEntities.SaveChanges();
             }
 
-        }
-
-        public void Delete(int id)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

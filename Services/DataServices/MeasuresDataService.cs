@@ -16,5 +16,22 @@ namespace INAH.Services.DataServices
                 return entities.Measures.FirstOrDefault(measure => measure.TempId == id && measure.Type == type)?.Value ?? default;
             }
         }
+
+        public void Upsert(int id, string type, float value)
+        {
+            using (var entities = new TempDataEntities())
+            {
+                var measure = entities.Measures.FirstOrDefault(m => m.TempId == id && m.Type == type);
+                if (measure == default)
+                {
+                    measure = new Measures();
+                    entities.Measures.Add(measure);
+                }
+                measure.TempId = id;
+                measure.Type = type;
+                measure.Value = value;
+                entities.SaveChanges();
+            }
+        }
     }
 }

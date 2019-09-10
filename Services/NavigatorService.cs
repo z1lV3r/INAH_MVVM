@@ -50,11 +50,11 @@ namespace INAH.Services
             Show(windowId, view, navigationMode);
         }
 
-        public void NavigateToItemDetail(Guid windowId, int id, NavigationMode navigationMode = NavigationMode.SHOW)
+        public void NavigateToItemDetail(Guid windowId, int id, int userId, NavigationMode navigationMode = NavigationMode.SHOW)
         {
             ItemDetailView view = new ItemDetailView()
             {
-                DataContext = new ItemDetailViewModel()
+                DataContext = new ItemDetailViewModel(id, userId)
                 {
                     StockNumber = id
                 }

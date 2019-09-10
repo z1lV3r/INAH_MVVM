@@ -25,20 +25,12 @@ namespace INAH.ViewModels
         public RelayCommand SaveCommand { get; set; }
         public RelayCommand LinkImageCommand { get; set; }
 
-        private PieceDetailsDataService pieceDetailsDataService;
-        private PiecesDataService piecesDataService;
-        private IdentifiersDataService identifiersService;
-        private MeasuresDataService measuresDataService;
         protected ItemEditViewModel() { }
-        public ItemEditViewModel(int id, int userId)
+        public ItemEditViewModel(int  id, int userId) : base(id, userId)
         {
             this.userId = userId;
 
             viewId = Guid.NewGuid();
-            pieceDetailsDataService = new PieceDetailsDataService();
-            piecesDataService = new PiecesDataService();
-            identifiersService = new IdentifiersDataService();
-            measuresDataService = new MeasuresDataService();
 
             Title = "Edición de elemento";
 
@@ -54,39 +46,6 @@ namespace INAH.ViewModels
 
             LinkImageCommand = new RelayCommand(LinkImageCommandExec);
             SaveCommand = new RelayCommand(SaveCommandExec);
-
-            var piece = piecesDataService.Find(id);
-            var details = pieceDetailsDataService.Find(id)?? new Piece_Details();
-
-            StockNumber = piece.TempId;
-            CatalogNumber = identifiersService.GetIdentifier(id, "Catalog");
-            RegistryNumber = identifiersService.GetIdentifier(id, "Registry");
-            OtherNumber = identifiersService.GetIdentifier(id, "Other");
-            CoveredPieces = details.CoveredPieces;
-            Type = details.Type;
-            Subject = piece.Subject;
-            Author = details.Author;
-            Period = details.Period;
-            Culture = details.Culture;
-            Origin = details.Origin;
-            Shape = details.Shape;
-            Inscriptions = details.Inscriptions;
-            Description = details.Description;
-            Remarks = details.Remarks;
-            Collection = details.Collection;
-            ConservationType = details.ConservationType;
-            Valuation = details.Valuation;
-            RawMaterial = details.RawMaterial;
-            ManufacturingTechnique = details.ManufacturingTechnique;
-            DecorativeTechnique = details.DecorativeTechnique;
-            Provenance = details.Provenance;
-            AcquisitionMethod = details.AcquisitionMethod;
-            Location = details.Location;
-            Height = measuresDataService.GetMeasure(id, "Height");
-            Width = measuresDataService.GetMeasure(id, "Width");
-            Length = measuresDataService.GetMeasure(id, "Length");
-            Diameter = measuresDataService.GetMeasure(id, "Diameter");
-            Weight = measuresDataService.GetMeasure(id, "Weight");
         }
 
         private void SaveCommandExec(object obj)
@@ -119,7 +78,18 @@ namespace INAH.ViewModels
                 Provenance = Provenance,
                 AcquisitionMethod = AcquisitionMethod,
                 Location = Location
-        });
+            });
+
+            if (CatalogNumber != default) identifiersService.Upsert(StockNumber, "Catalog", CatalogNumber);
+            if (RegistryNumber != default) identifiersService.Upsert(StockNumber, "Registry", RegistryNumber);
+            if (OtherNumber != default) identifiersService.Upsert(StockNumber, "Other", OtherNumber);
+
+            if (Height > default(float)) measuresDataService.Upsert(StockNumber, "Height", Height);
+            if (Width > default(float)) measuresDataService.Upsert(StockNumber, "Width", Width);
+            if (Length > default(float)) measuresDataService.Upsert(StockNumber, "Length", Length);
+            if (Diameter > default(float)) measuresDataService.Upsert(StockNumber, "Diameter", Diameter);
+            if (Weight > default(float)) measuresDataService.Upsert(StockNumber, "Weight", Weight);
+
             navigatorService.Close(ViewId);
         }
 

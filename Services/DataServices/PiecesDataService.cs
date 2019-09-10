@@ -13,6 +13,11 @@ namespace INAH.Services.DataServices
     {
         public void Delete(int id)
         {
+            using (var entities = new TempDataEntities())
+            {
+                entities.Pieces.Remove(entities.Pieces.First(p => p.TempId == id));
+                entities.SaveChanges();
+            }
         }
 
         public List<Pieces> FindAll()
@@ -25,16 +30,19 @@ namespace INAH.Services.DataServices
 
         public void Upsert(Pieces pieces)
         {
-            using (var dataEntities = new TempDataEntities())
+            using (var entities = new TempDataEntities())
             {
-                var newPiece = new Pieces
-                {
-                    Subject = pieces.Subject, CreatedBy = pieces.CreatedBy, TempId = pieces.TempId
-                };
+                var piece = entities.Pieces.FirstOrDefault(p => p.TempId == pieces.TempId) ?? new Pieces();
+                piece.Subject = pieces.Subject;
 
-                dataEntities.Pieces.Add(newPiece);
-                
-                dataEntities.SaveChanges();
+                if (piece.TempId == default)
+                {
+                    piece.TempId = pieces.TempId;
+                    piece.CreatedBy = pieces.CreatedBy;
+                    entities.Pieces.Add(piece);
+                }
+
+                entities.SaveChanges();
             }
         }
 

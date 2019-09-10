@@ -1,4 +1,5 @@
-﻿using INAH.Commands;
+﻿using System.Linq;
+using INAH.Commands;
 using INAH.Services;
 using INAH.ViewModels.Abstracts;
 using System.Windows;
@@ -56,23 +57,20 @@ namespace INAH.ViewModels
 
         public void ShowDetailCommandExec(object args)
         {
-            navigatorService.NavigateToItemDetail(CollectionsViewModel.viewId, Id);
+            navigatorService.NavigateToItemDetail(CollectionsViewModel.viewId, Id, userId);
         }
 
         public void EditCommandExec(object args)
         {
-            navigatorService.NavigateToItemEdit(CollectionsViewModel.viewId, userId, Id);
+            navigatorService.NavigateToItemEdit(CollectionsViewModel.viewId, Id, userId);
         }
 
         public void DeleteCommandExec(object args)
         {
             var res = MessageBox.Show("¿Estas seguro que deseas eliminar el elemento " + Name + "?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (res.Equals(MessageBoxResult.Yes))
-            {
-                pieceDetailsDataService.Delete(Id);
-                piecesDataService.Delete(Id);
-                MessageBox.Show("Borrado");
-            }
+            if (res.Equals(MessageBoxResult.No)) return;
+            piecesDataService.Delete(Id);
+            CollectionsViewModel.Items.Remove(CollectionsViewModel.Items.First(vm => vm.Id == Id));
         }
     }
 }
