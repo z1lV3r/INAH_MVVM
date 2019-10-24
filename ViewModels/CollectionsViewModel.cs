@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Windows;
 using System.Windows.Documents;
 using INAH.Commands;
 using INAH.Models;
+using INAH.Services;
 using INAH.Services.DataServices;
 
 namespace INAH.ViewModels
@@ -21,14 +23,18 @@ namespace INAH.ViewModels
         public static ObservableCollection<CollectionsItemViewModel> Items { get; protected set; }
 
         public RelayCommand AddCommand { get; set; }
+        public RelayCommand CloseCommand { get; set; }
+        public RelayCommand ExportCommand { get; set; }
 
         private PiecesDataService piecesDataService;
+        private ExportService exportService;
         public CollectionsViewModel() { }
 
         public CollectionsViewModel(int userId)
         {
             this.UserId = userId;
             piecesDataService = new PiecesDataService();
+            exportService = new ExportService();
             
             viewId = Guid.NewGuid();
             Title = "Colección";
@@ -44,6 +50,8 @@ namespace INAH.ViewModels
                 });
             }
             AddCommand = new RelayCommand(AddCommandExec);
+            CloseCommand = new RelayCommand(CloseCommandExec);
+            ExportCommand = new RelayCommand(ExportCommandExec);
         }
 
         private string GetPath(int id)
@@ -56,6 +64,16 @@ namespace INAH.ViewModels
         public void AddCommandExec(object args)
         {
             navigatorService.NavigateToItemEdit(viewId, default, userId);
+        }
+
+        public void CloseCommandExec(object args)
+        {
+            navigatorService.Close(viewId);
+        }
+
+        public void ExportCommandExec(object args)
+        {
+            exportService.Export(UserId);
         }
     }
 }

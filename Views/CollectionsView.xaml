@@ -11,6 +11,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -18,15 +19,22 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
+        <Menu Grid.ColumnSpan="3">
+            <MenuItem Header="_Archivo">
+                <MenuItem Header="_Exportar" Command="{Binding Path=ExportCommand}"/>
+                <Separator />
+                <MenuItem Header="_Salir" Command="{Binding Path=CloseCommand}"/>
+            </MenuItem>
+        </Menu>
         <Label Content="{Binding Title, Mode=OneTime}" Style="{StaticResource WindowTitleStyle}"
-               Grid.Row="0" Grid.Column="1"
+               Grid.Row="1" Grid.Column="1"
                HorizontalAlignment="Center" />
-        <Button Width="48" Height="48" Padding="5" Margin="0,0,10,0" Grid.Column="2" 
+        <Button Width="48" Height="48" Padding="5" Margin="0,0,10,0" Grid.Column="2" Grid.Row="1" 
                 Background="{x:Null}" BorderBrush="{x:Null}" KeyboardNavigation.IsTabStop="False"
                 Command="{Binding AddCommand}">
             <Image Source="/Resources/Images/add.png"/>
         </Button>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
             <ItemsControl ItemsSource="{Binding Items}" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>

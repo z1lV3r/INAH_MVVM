@@ -12,6 +12,8 @@
                 <ResourceDictionary Source="/Resources/Dictionaries/Styles/TitleStyle.xaml"/>
                 <ResourceDictionary Source="/Resources/Dictionaries/DesignViewModels.xaml"/>
                 <ResourceDictionary Source="/Resources/Dictionaries/Converters.xaml"/>
+
+                <ResourceDictionary Source="/Resources/Configuration/SerializeConfig.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

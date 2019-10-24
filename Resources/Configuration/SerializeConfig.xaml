@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <x:Array x:Key="ColumnsExcluded" Type="sys:String" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib">
+        <sys:String>History</sys:String>
+        <sys:String>Pieces</sys:String>
+        <sys:String>Id</sys:String>
+        <sys:String>CreatedBy</sys:String>
+        <sys:String>Password</sys:String>
+    </x:Array>
+</ResourceDictionary>
