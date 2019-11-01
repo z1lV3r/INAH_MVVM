@@ -32,6 +32,7 @@ namespace INAH.Component
         public static readonly DependencyProperty PrefixTextProperty = DependencyProperty.Register("PrefixText", typeof(string), typeof(TitledTextBox), new PropertyMetadata(string.Empty));
         public static readonly DependencyProperty TextBoxMaxHeightProperty = DependencyProperty.Register("TextBoxMaxHeight", typeof(double), typeof(TitledTextBox), new PropertyMetadata(double.PositiveInfinity));
         public static readonly DependencyProperty HelpTextProperty = DependencyProperty.Register("HelpText", typeof(string), typeof(TitledTextBox), new PropertyMetadata(default(string)));
+        public static readonly DependencyProperty ErrorTextProperty = DependencyProperty.Register("ErrorText", typeof(string), typeof(TitledTextBox), new PropertyMetadata(default(string)));
 
         public TitledTextBox()
         {
@@ -108,6 +109,12 @@ namespace INAH.Component
         {
             get => (string) GetValue(HelpTextProperty);
             set => SetValue(HelpTextProperty, value);
+        }
+
+        public string ErrorText
+        {
+            get => (string) GetValue(ErrorTextProperty);
+            set => SetValue(ErrorTextProperty, value);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

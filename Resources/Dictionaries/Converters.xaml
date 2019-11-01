@@ -8,4 +8,5 @@
     <cv:NumberToStringConverter x:Key="NumberToStringCV" />
     <cv:SourcePathToFileNameConverter x:Key="SourcePathToFileNameCV"/>
     <cv:ItemImageConverter x:Key="ItemImageCV"/>
+    <cv:ErrorColorConverter x:Key="ErrorColorCV" />
 </ResourceDictionary>

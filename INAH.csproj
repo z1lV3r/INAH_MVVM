@@ -187,6 +187,7 @@
       <DependentUpon>TitledTextBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\ErrorColorConverter.cs" />
     <Compile Include="Converters\IntegerSetVisibilityConverter.cs" />
     <Compile Include="Converters\ItemDetailMeasureVisibilityConverter.cs" />
     <Compile Include="Converters\ItemImageConverter.cs" />
@@ -195,6 +196,8 @@
     <Compile Include="Converters\StringSetVisibilityConverter.cs" />
     <Compile Include="Exceptions\BaseException.cs" />
     <Compile Include="Exceptions\ExceptionHandler.cs" />
+    <Compile Include="Exceptions\NotNumberInputException.cs" />
+    <Compile Include="Exceptions\RequiredInputException.cs" />
     <Compile Include="Exceptions\InvalidLoginDataException.cs" />
     <Compile Include="Models\History.cs">
       <DependentUpon>TempDataModel.tt</DependentUpon>

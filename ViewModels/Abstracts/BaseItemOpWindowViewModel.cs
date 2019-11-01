@@ -298,15 +298,19 @@ namespace INAH.ViewModels.Abstracts
             Length = measuresDataService.GetMeasure(id, "Length");
             Diameter = measuresDataService.GetMeasure(id, "Diameter");
             Weight = measuresDataService.GetMeasure(id, "Weight");
+
+            ImageSource = Utils.GetImageSource(StockNumber);
         }
 
         public void ReturnToCollectionsExec(object args)
         {
+            ImageSource = "/Resources/Images/notFound.png";
             navigatorService.NavigateToCollections(ViewId, CollectionsViewModel.userId, NavigatorService.NavigationMode.MODAL);
         }
 
         public void BackToCollectionsExec(object args)
         {
+            ImageSource = "/Resources/Images/notFound.png";
             navigatorService.Close(ViewId);
         }
     }

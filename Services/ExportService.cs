@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.IO.Compression;
@@ -23,7 +24,7 @@ namespace INAH.Services
             measuresDataService = new MeasuresDataService();
             identifiersDataService = new IdentifiersDataService();
         }
-        public void Export(int UserId)
+        public void Export(int UserId, string path)
         {
             string serializedDatabase;
 
@@ -40,15 +41,22 @@ namespace INAH.Services
                     });
             }
 
-            //TODO: create file  with JSON
+            var exportedDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Exported");
+            Directory.CreateDirectory(exportedDir);
 
-            //TODO: copy images
+            File.WriteAllText(Path.Combine(exportedDir, "data.json"), serializedDatabase);
 
-            //TODO: create zip
-            ZipFile.CreateFromDirectory("", "");
+            var files = Directory.GetFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images"), "*.*");
+            
+            foreach (var file in files)
+            {
+                    var exported = Path.Combine(exportedDir, new FileInfo(file).Name);
+                    File.Copy(file, exported, true);
+            }
 
-            //TODO: copy in route with other extension
+            ZipFile.CreateFromDirectory(exportedDir, path);
 
+            Directory.Delete(exportedDir, true);
         }
 
         private class CustomContractResolver : DefaultContractResolver

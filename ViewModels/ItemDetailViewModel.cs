@@ -19,7 +19,6 @@ namespace INAH.ViewModels
         {
             viewId = Guid.NewGuid();
             Title = "Detalle de elemento";
-
         }
     }
 }

@@ -65,7 +65,8 @@
                 <Label Content="Avalúo" Style="{StaticResource CategoryTitleStyle}"/>
                 <cc:TitledTextBox
                     Title="Avalúo:" Text="{Binding Valuation, Mode=TwoWay, Converter={StaticResource NumberToStringCV}}"
-                    HasToLowerCase="False" PrefixText="$" PostfixText="MXN" TitledTextBoxMargin="0" TextBoxHorizontalContentAlignment="Center"/>
+                    HasToLowerCase="False" PrefixText="$" PostfixText="MXN" TitledTextBoxMargin="0" TextBoxHorizontalContentAlignment="Center"
+                    LostFocus="ValidateOnlyNumbers"/>
             </StackPanel>
 
             <!-- Detalle de la pieza en panel derecho -->
@@ -105,49 +106,52 @@
                         <cc:TitledTextBox
                             Title="Número de catálogo:" Text="{Binding CatalogNumber, Mode=TwoWay}"
                             Grid.Column="0" Grid.Row="1"
-                            HasToLowerCase="False" TextBoxHeight="25"/>
+                            HasToLowerCase="False" TextBoxHeight="25" LostFocus="ValidateOnlyNumbers"/>
                         <cc:TitledTextBox 
                             Title="Número de registro:" Text="{Binding RegistryNumber, Mode=TwoWay}"
                             Grid.Column="1" Grid.Row="1"
-                            HasToLowerCase="False" TextBoxHeight="25"/>
+                            HasToLowerCase="False" TextBoxHeight="25" LostFocus="ValidateOnlyNumbers"/>
                         <cc:TitledTextBox 
                             Title="Otros números:" Text="{Binding OtherNumber, Mode=TwoWay}"
                             Grid.Column="2" Grid.Row="1"
-                            HasToLowerCase="False" TextBoxHeight="25"/>
+                            HasToLowerCase="False" TextBoxHeight="25" LostFocus="ValidateOnlyNumbers"/>
                     </Grid>
 
                     <!-- Descripción básica -->
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="178*" />
+                            <ColumnDefinition Width="43*"/>
+                            <ColumnDefinition Width="221*" />
+                            <ColumnDefinition Width="221*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <Label Content="Descripción básica" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource CategoryTitleStyle}"/>
+                        <Label Content="Descripción básica" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" Style="{StaticResource CategoryTitleStyle}"/>
 
                         <cc:TitledTextBox 
                             Title="Tipo de objeto:*" Text="{Binding Type, Mode=TwoWay}"
-                            Grid.Column="0" Grid.Row="1" TextBoxHeight="25" HelpText="Texto de ayuda"/>
+                            Grid.Column="0" Grid.Row="1" TextBoxHeight="25" HelpText="Texto de ayuda" Grid.ColumnSpan="2"
+                            LostFocus="RequiredField"/>
                         <cc:TitledTextBox
                             Title="Nombre o tema:*" Text="{Binding Subject, Mode=TwoWay}"
-                            Grid.Column="1" Grid.Row="1" TextBoxHeight="25"/>
+                            Grid.Column="2" Grid.Row="1" TextBoxHeight="25"
+                            LostFocus="RequiredField"/>
                         <cc:TitledTextBox
                             Title="Autor:" Text="{Binding Author, Mode=TwoWay}"
-                            Grid.Column="2" Grid.Row="1" TextBoxHeight="25"/>
+                            Grid.Column="3" Grid.Row="1" TextBoxHeight="25"/>
                         <cc:TitledTextBox
                             Title="Epoca:" Text="{Binding Period, Mode=TwoWay}"
-                            Grid.Column="0" Grid.Row="2" TextBoxHeight="25"/>
+                            Grid.Column="0" Grid.Row="2" TextBoxHeight="25" Grid.ColumnSpan="2"/>
                         <cc:TitledTextBox
                             Title="Cultura:" Text="{Binding Culture, Mode=TwoWay}"
-                            Grid.Column="1" Grid.Row="2" TextBoxHeight="25"/>
+                            Grid.Column="2" Grid.Row="2" TextBoxHeight="25"/>
                         <cc:TitledTextBox
                             Title="Lugar de origen:" Text="{Binding Origin, Mode=TwoWay}"
-                            Grid.Column="2" Grid.Row="2" TextBoxHeight="25"/>
+                            Grid.Column="3" Grid.Row="2" TextBoxHeight="25"/>
                     </Grid>
 
                     <!-- Composición -->
@@ -165,7 +169,8 @@
 
                         <cc:TitledTextBox
                             Title="Material constitutivo:*" Text="{Binding RawMaterial, Mode=TwoWay}"
-                            Grid.Column="0" Grid.Row="1" TextBoxHeight="25"/>
+                            Grid.Column="0" Grid.Row="1" TextBoxHeight="25"
+                            LostFocus="RequiredField"/>
                         <cc:TitledTextBox
                             Title="Técnica de maufactura:" Text="{Binding ManufacturingTechnique, Mode=TwoWay}"
                             Grid.Column="1" Grid.Row="1" TextBoxHeight="25"/>
@@ -226,7 +231,7 @@
                         <cc:TitledTextBox
                             Title="Piezas que ampara este registro:" Text="{Binding CoveredPieces, Mode=TwoWay, Converter={StaticResource NumberToStringCV}}"
                             Grid.Column="0" Grid.Row="1"
-                            HasToLowerCase="False"/>
+                            HasToLowerCase="False" LostFocus="ValidateOnlyNumbers"/>
                         <DockPanel Grid.Column="1" Grid.Row="1">
                             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
                                 <Label Content="Verificado: " Style="{StaticResource TitleStyle}"/>
@@ -253,23 +258,28 @@
                         <cc:TitledTextBox 
                             Title="↕ Alto:" Text="{Binding Height, Mode=TwoWay, Converter={StaticResource NumberToStringCV}}"
                             Grid.Column="0" Grid.Row="1"
-                            HasToLowerCase="False" TextBoxHorizontalContentAlignment="Center" PrefixText="cm" />
+                            HasToLowerCase="False" TextBoxHorizontalContentAlignment="Center" PrefixText="cm" 
+                            LostFocus="ValidateOnlyNumbers" />
                         <cc:TitledTextBox 
                             Title="↔ Largo:" Text="{Binding Width, Mode=TwoWay, Converter={StaticResource NumberToStringCV}}"
                             Grid.Column="1" Grid.Row="1"
-                            HasToLowerCase="False" TextBoxHorizontalContentAlignment="Center" PrefixText="cm" />
+                            HasToLowerCase="False" TextBoxHorizontalContentAlignment="Center" PrefixText="cm"
+                            LostFocus="ValidateOnlyNumbers"/>
                         <cc:TitledTextBox 
                             Title="➚ Espesor:" Text="{Binding Length, Mode=TwoWay, Converter={StaticResource NumberToStringCV}}"
                             Grid.Column="2" Grid.Row="1"
-                            HasToLowerCase="False" TextBoxHorizontalContentAlignment="Center" PrefixText="cm" />
+                            HasToLowerCase="False" TextBoxHorizontalContentAlignment="Center" PrefixText="cm"
+                            LostFocus="ValidateOnlyNumbers"/>
                         <cc:TitledTextBox 
                             Title="Diámetro:" Text="{Binding Diameter, Mode=TwoWay, Converter={StaticResource NumberToStringCV}}"
                             Grid.Column="3" Grid.Row="1"
-                            HasToLowerCase="False" TextBoxHorizontalContentAlignment="Center" PrefixText="cm" />
+                            HasToLowerCase="False" TextBoxHorizontalContentAlignment="Center" PrefixText="cm"
+                            LostFocus="ValidateOnlyNumbers"/>
                         <cc:TitledTextBox 
                             Title="Peso:" Text="{Binding Weight, Mode=TwoWay, Converter={StaticResource NumberToStringCV}}"
                             Grid.Column="4" Grid.Row="1"
-                            HasToLowerCase="False" TextBoxHorizontalContentAlignment="Center" PrefixText="cm" />
+                            HasToLowerCase="False" TextBoxHorizontalContentAlignment="Center" PrefixText="cm" 
+                            LostFocus="ValidateOnlyNumbers"/>
                     </Grid>
 
                     <!-- Descripción visual -->

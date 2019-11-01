@@ -10,6 +10,7 @@ using INAH.Commands;
 using INAH.Models;
 using INAH.Services;
 using INAH.Services.DataServices;
+using Microsoft.Win32;
 
 namespace INAH.ViewModels
 {
@@ -56,7 +57,11 @@ namespace INAH.ViewModels
 
         private string GetPath(int id)
         {
-            var files = Directory.GetFiles(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Images"), id.ToString() + "*");
+            var files = Directory.GetFiles(
+                    Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Images"),
+                    id.ToString() + "*")
+                .Where(file =>
+                    id.ToString().Equals(Path.GetFileNameWithoutExtension(file)) || Path.GetFileNameWithoutExtension(file).Contains("_")).ToArray();
             return files.Length > 0 ? files.First() : "/Resources/Images/notFound.png";
         }
 
@@ -73,7 +78,20 @@ namespace INAH.ViewModels
 
         public void ExportCommandExec(object args)
         {
-            exportService.Export(UserId);
+            var dlg = new SaveFileDialog
+            {
+                Filter = "" +
+                         "Inventory exported file" +
+                         " (*.ief) |*.ief"
+            };
+
+            var result = dlg.ShowDialog();
+
+            if (result.HasValue && result.Value)
+            {
+                var path = dlg.FileName;
+                exportService.Export(UserId, path);
+            }
         }
     }
 }

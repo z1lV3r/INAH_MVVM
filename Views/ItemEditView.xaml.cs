@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using INAH.Component;
 
 namespace INAH.Views
 {
@@ -22,6 +23,27 @@ namespace INAH.Views
         public ItemEditView()
         {
             InitializeComponent();
+        }
+
+        private void ValidateOnlyNumbers(object sender, RoutedEventArgs e)
+        {
+            var titledTextBox = (TitledTextBox) sender;
+            titledTextBox.ErrorText = string.Empty;
+            if (!string.IsNullOrEmpty(titledTextBox.Text) && !titledTextBox.Text.All(char.IsDigit))
+            {
+                titledTextBox.ErrorText = "Este campo solo permite datos numericos";
+            }
+
+        }
+
+        private void RequiredField(object sender, RoutedEventArgs e)
+        {
+            var titledTextBox = (TitledTextBox)sender;
+            titledTextBox.ErrorText = string.Empty;
+            if (string.IsNullOrEmpty(titledTextBox.Text))
+            {
+                titledTextBox.ErrorText = "Este campo es obligatorio";
+            }
         }
     }
 }
