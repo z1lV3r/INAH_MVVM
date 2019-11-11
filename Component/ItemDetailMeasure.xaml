@@ -11,8 +11,10 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Label Content="{Binding MeasureName, ElementName=ItemDetail}" Grid.Column="0" HorizontalAlignment="Right" FontWeight="Bold"/>
         <Label Content="{Binding MeasureValue, ElementName=ItemDetail}" Grid.Column="1" HorizontalAlignment="Left"/>
+        <Label Content=" cm" Grid.Column="2" HorizontalAlignment="Left"/>
     </Grid>
 </UserControl>

@@ -102,7 +102,7 @@
                         DetailTitle="Conservacion: " Value="{Binding ConservationType, Mode=OneWay}"
                         Visibility="{Binding ConservationType, Converter={StaticResource IntegerSetVisibilityCV}, Mode=OneWay}"/>
                     <cc:ItemDetailData 
-                        DetailTitle="Avaluo: " Value="{Binding Valuation, Mode=OneWay}"
+                        DetailTitle="Avaluo: " Value="{Binding Valuation, Mode=OneWay, StringFormat='${0}'}"
                         Visibility="{Binding Valuation, Converter={StaticResource IntegerSetVisibilityCV}, Mode=OneWay}"/>
                     <cc:ItemDetailData 
                         DetailTitle="Materia prima: " Value="{Binding RawMaterial, Mode=OneWay}"
