@@ -27,14 +27,13 @@ namespace INAH.Exceptions
         {
             if (exception is BaseException e)
             {
-                if (e.TargetSite.ReflectedType != null)
+                if (e.ViewId != null)
                 {
-                    var field = e.TargetSite.ReflectedType.GetField("viewId",
-                        System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
-                    if (field != null)
-                    {
-                        MessageBox.Show(Utils.GetWindowFromViewModelId((Guid)field.GetValue(null)), e.Description,e.Tittle, MessageBoxButton.OK, getIcon(e.Severity));
-                    }
+                    MessageBox.Show(Utils.GetWindowFromViewModelId((Guid) e.ViewId), e.Description,e.Tittle, MessageBoxButton.OK, getIcon(e.Severity));
+                }
+                else
+                {
+                    MessageBox.Show(e.Description, e.Tittle, MessageBoxButton.OK, getIcon(e.Severity));
                 }
             }
             else

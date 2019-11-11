@@ -46,7 +46,7 @@ namespace INAH.ViewModels
             }
 
             var local = usersDataService.Find(new Users() {Email = Email, Password = password});
-            if (local == null) throw new InvalidLoginDataException();
+            if (local == null) throw new InvalidLoginDataException(viewId);
 
             navigatorService.NavigateToCollections(ViewId, local.Id);
         }

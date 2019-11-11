@@ -8,8 +8,9 @@ namespace INAH.Exceptions
 {
     public class InvalidLoginDataException : BaseException
     {
-        public InvalidLoginDataException()
+        public InvalidLoginDataException(Guid viewId)
         {
+            ViewId = viewId;
             Severity = SeverityType.Error;
             Tittle = "Datos incorrectos";
             Description = "Los datos proporcionados no son validos. Intente nuevamente.";

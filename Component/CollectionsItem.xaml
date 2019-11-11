@@ -4,20 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:INAH.Component"
-             mc:Ignorable="d"
-             d:DataContext="{StaticResource CollectionsItemDesign}">
-    <Grid>
-        <Grid Width="200" Height="180" Margin="10, 10, 10, 10">
-            <Grid.Background>
-                <ImageBrush ImageSource="{Binding Image, Converter={StaticResource ItemImageCV}}" Stretch="UniformToFill" />
-            </Grid.Background>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-        </Grid>
+             mc:Ignorable="d">
+    <Grid Background="{Binding Image, Converter={StaticResource ItemImageCV}}" Margin="10, 10, 10, 10">
         <Grid  Width="200" Height="180" Background="#CC252525" Opacity="0" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />

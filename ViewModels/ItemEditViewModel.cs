@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using INAH.Exceptions;
 using INAH.Models;
 using INAH.Services.DataServices;
+using INAH.Views.Validations;
 using Microsoft.Win32;
 
 namespace INAH.ViewModels
@@ -57,20 +58,21 @@ namespace INAH.ViewModels
         private void SaveCommandExec(object obj)
         {
 
-            if (string.IsNullOrEmpty(Type)) throw new RequiredInputException("Tipo de objeto");
-            if (string.IsNullOrEmpty(Subject)) throw new RequiredInputException("Nombre o tema");
-            if (string.IsNullOrEmpty(RawMaterial)) throw new RequiredInputException("Material constitutivo");
+            Validations.NotNullValidation(ViewId, "Tipo de objeto", Type);
+            Validations.NotNullValidation(ViewId, "Nombre o tema", Subject);
+            Validations.NotNullValidation(ViewId, "Material constitutivo", RawMaterial);
 
-            if (!string.IsNullOrEmpty(Valuation.ToString()) && !Valuation.ToString().All(char.IsDigit)) throw new NotNumberInputException("Avalúo");
-            if (!CatalogNumber.All(char.IsDigit)) throw new NotNumberInputException("Número de catálogo");
-            if (!RegistryNumber.All(char.IsDigit)) throw new NotNumberInputException("Número de registro");
-            if (!OtherNumber.All(char.IsDigit)) throw new NotNumberInputException("Otros números");
-            if (!CoveredPieces.ToString().All(char.IsDigit)) throw new NotNumberInputException("Piezas que ampara este registro");
-            if (!Height.ToString(CultureInfo.CurrentCulture).All(char.IsDigit)) throw new NotNumberInputException("Alto");
-            if (!Width.ToString(CultureInfo.CurrentCulture).All(char.IsDigit)) throw new NotNumberInputException("Largo");
-            if (!Length.ToString(CultureInfo.CurrentCulture).All(char.IsDigit)) throw new NotNumberInputException("Espesor");
-            if (!Diameter.ToString(CultureInfo.CurrentCulture).All(char.IsDigit)) throw new NotNumberInputException("Diámetro");
-            if (!Weight.ToString(CultureInfo.CurrentCulture).All(char.IsDigit)) throw new NotNumberInputException("Peso");
+            Validations.IntegerValidation(ViewId, "Avalúo", Valuation.ToString());
+            Validations.IntegerValidation(ViewId, "Número de catálogo", CatalogNumber);
+            Validations.IntegerValidation(ViewId, "Número de registro", RegistryNumber);
+            Validations.IntegerValidation(ViewId, "Otros números", OtherNumber);
+            Validations.IntegerValidation(ViewId, "Piezas que ampara este registro", CoveredPieces.ToString());
+
+            Validations.FloatValidation(ViewId, "Alto", Height);
+            Validations.FloatValidation(ViewId, "Largo", Width);
+            Validations.FloatValidation(ViewId, "Espesor", Length);
+            Validations.FloatValidation(ViewId, "Diámetro", Diameter);
+            Validations.FloatValidation(ViewId, "Peso", Weight);
 
             piecesDataService.Upsert(new Pieces()
             {
@@ -106,12 +108,35 @@ namespace INAH.ViewModels
             if (RegistryNumber != default) identifiersService.Upsert(StockNumber, "Registry", RegistryNumber);
             if (OtherNumber != default) identifiersService.Upsert(StockNumber, "Other", OtherNumber);
 
-            if (Height > default(float)) measuresDataService.Upsert(StockNumber, "Height", Height);
-            if (Width > default(float)) measuresDataService.Upsert(StockNumber, "Width", Width);
-            if (Length > default(float)) measuresDataService.Upsert(StockNumber, "Length", Length);
-            if (Diameter > default(float)) measuresDataService.Upsert(StockNumber, "Diameter", Diameter);
-            if (Weight > default(float)) measuresDataService.Upsert(StockNumber, "Weight", Weight);
+            if (!string.IsNullOrEmpty(Height))
+            {
+                var floatHeight = float.Parse(Height);
+                if (floatHeight > default(float)) measuresDataService.Upsert(StockNumber, "Height", floatHeight);
+            }
 
+            if (!string.IsNullOrEmpty(Width))
+            {
+                var floatWidth = float.Parse(Width);
+                if (floatWidth > default(float)) measuresDataService.Upsert(StockNumber, "Width", floatWidth);
+            }
+
+            if (!string.IsNullOrEmpty(Length))
+            {
+                var floatLength = float.Parse(Length);
+                if (floatLength > default(float)) measuresDataService.Upsert(StockNumber, "Length", floatLength);
+            }
+
+            if (!string.IsNullOrEmpty(Diameter))
+            {
+                var floatDiameter = float.Parse(Diameter);
+                if (floatDiameter > default(float)) measuresDataService.Upsert(StockNumber, "Diameter", floatDiameter);
+            }
+
+            if (!string.IsNullOrEmpty(Weight))
+            {
+                var floatWeight = float.Parse(Weight);
+                if (floatWeight > default(float)) measuresDataService.Upsert(StockNumber, "Weight", floatWeight);
+            }
             if (ImageSource != null && ImageSource!= "/Resources/Images/notFound.png")
             {
                 var directoryTo = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Images");

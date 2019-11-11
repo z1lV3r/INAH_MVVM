@@ -35,7 +35,7 @@
                 <ColumnDefinition Width="6*" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Label Content="Número de inventario:" Style="{StaticResource WindowTitleStyle}"
+                <Label Content="Número de inventario temporal:" Style="{StaticResource WindowTitleStyle}"
                        HorizontalAlignment="Center" FontWeight="Bold"/>
                 <Label Content="{Binding StockNumber, Mode=OneTime}" Style="{StaticResource WindowTitleStyle}"
                        HorizontalAlignment="Center" />
@@ -129,7 +129,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Image Height="350" Width="Auto" Grid.Row="0" Grid.Column="0" Source="{Binding ImageSource, Converter={StaticResource ItemImageCV}}" />
+                <Image Height="350" Width="Auto" Grid.Row="0" Grid.Column="0" Source="{Binding ImageSource, Converter={StaticResource ImageSourceCV}}" />
                 <StackPanel Grid.Row="1" Grid.Column="0">
                     <Label Content="Medidas" HorizontalAlignment="Center" FontWeight="Bold"/>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center">

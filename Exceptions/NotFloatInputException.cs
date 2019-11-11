@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace INAH.Exceptions
 {
-    class NotNumberInputException : BaseException
+    class NotFloatInputException : BaseException
     {
-        public NotNumberInputException(string name, Guid viewId)
+        public NotFloatInputException(string name, Guid viewId)
         {
             ViewId = viewId;
             Severity = SeverityType.Error;
             Tittle = "Datos incorrectos";
-            Description = "Los datos proporcionados en el campo " + name + " no son validos, verificar que sean númericos.";
+            Description = "Los datos proporcionados en el campo " + name + " no son validos, verificar que sean númericos con decimales mayor a 0.";
         }
     }
 }

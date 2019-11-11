@@ -98,6 +98,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\ImageSourceConverter.cs" />
+    <Compile Include="Exceptions\NotFloatInputException.cs" />
+    <Compile Include="Views\Validations\Validations.cs" />
     <Page Include="Component\CollectionsItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -143,10 +146,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Dictionaries\Templates\WindowTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\Dictionaries\DesignViewModels.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -248,11 +247,6 @@
     <Compile Include="ViewModels\CollectionsItemViewModel.cs" />
     <Compile Include="ViewModels\CollectionsViewModel.cs" />
     <Compile Include="ViewModels\Abstracts\IRequireViewIdentification.cs" />
-    <Compile Include="ViewModels\Design\CollectionsDesignViewModel.cs" />
-    <Compile Include="ViewModels\Design\CollectionsItemDesignViewModel.cs" />
-    <Compile Include="ViewModels\Design\ItemDetailDesignViewModel.cs" />
-    <Compile Include="ViewModels\Design\ItemEditDesignViewModel.cs" />
-    <Compile Include="ViewModels\Design\LoginDesignViewModel.cs" />
     <Compile Include="ViewModels\ItemDetailViewModel.cs" />
     <Compile Include="ViewModels\ItemEditViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />

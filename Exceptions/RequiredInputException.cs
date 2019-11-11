@@ -8,8 +8,9 @@ namespace INAH.Exceptions
 {
     class RequiredInputException : BaseException
     {
-        public RequiredInputException(string name)
+        public RequiredInputException(string name, Guid viewId)
         {
+            ViewId = viewId;
             Severity = SeverityType.Error;
             Tittle = "Datos incorrectos";
             Description = "Los datos marcados con * son obligatorios.\nVerifica el campo " + name + ".";

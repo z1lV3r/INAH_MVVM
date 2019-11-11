@@ -53,7 +53,7 @@ namespace INAH.Services.DataServices
                 return dataEntities.Pieces.FirstOrDefault(piece => piece.TempId == id) ?? 
                        new Pieces()
                        {
-                           TempId = dataEntities.Pieces.ToList().Count > 0 ? dataEntities.Pieces.Max(table => table.TempId) : 1
+                           TempId = dataEntities.Pieces.ToList().Count > 0 ? dataEntities.Pieces.Max(table => table.TempId) + 1: 1
                        };
             }
         }

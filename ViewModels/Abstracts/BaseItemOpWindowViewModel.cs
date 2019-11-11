@@ -59,11 +59,11 @@ namespace INAH.ViewModels.Abstracts
         private string location; //Ubicacion_Actual
 
         //medidas from table medidas
-        private float height; //Alto
-        private float width; //Ancho
-        private float length; //Largo
-        private float diameter; //Diametro
-        private float weight; //Peso
+        private string height; //Alto
+        private string width; //Ancho
+        private string length; //Largo
+        private string diameter; //Diametro
+        private string weight; //Peso
 
         protected int userId;
 
@@ -223,31 +223,31 @@ namespace INAH.ViewModels.Abstracts
             set { location = value; NotifyPropertyChanged(); }
         }
 
-        public float Height
+        public string Height
         {
             get => height;
             set { height = value; NotifyPropertyChanged(); }
         }
 
-        public float Width
+        public string Width
         {
             get => width;
             set { width = value; NotifyPropertyChanged(); }
         }
 
-        public float Length
+        public string Length
         {
             get => length;
             set { length = value; NotifyPropertyChanged(); }
         }
 
-        public float Diameter
+        public string Diameter
         {
             get => diameter;
             set { diameter = value; NotifyPropertyChanged(); }
         }
 
-        public float Weight
+        public string Weight
         {
             get => weight;
             set { weight = value; NotifyPropertyChanged(); }
@@ -304,13 +304,11 @@ namespace INAH.ViewModels.Abstracts
 
         public void ReturnToCollectionsExec(object args)
         {
-            ImageSource = "/Resources/Images/notFound.png";
             navigatorService.NavigateToCollections(ViewId, CollectionsViewModel.userId, NavigatorService.NavigationMode.MODAL);
         }
 
         public void BackToCollectionsExec(object args)
         {
-            ImageSource = "/Resources/Images/notFound.png";
             navigatorService.Close(ViewId);
         }
     }

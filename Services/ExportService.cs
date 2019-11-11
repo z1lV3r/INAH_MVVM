@@ -47,11 +47,17 @@ namespace INAH.Services
             File.WriteAllText(Path.Combine(exportedDir, "data.json"), serializedDatabase);
 
             var files = Directory.GetFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images"), "*.*");
+
+            var p = piecesDataService.FindAll();
             
             foreach (var file in files)
             {
+                var name = new FileInfo(file).Name.Split('.')[0];
+                if (p.Where(piece => name.Equals(piece.TempId.ToString())).ToList().Count > 0)
+                {
                     var exported = Path.Combine(exportedDir, new FileInfo(file).Name);
                     File.Copy(file, exported, true);
+                }
             }
 
             ZipFile.CreateFromDirectory(exportedDir, path);

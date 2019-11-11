@@ -17,8 +17,8 @@ namespace INAH.Exceptions
 
         public SeverityType Severity { get; set; }
         public string Tittle { get; set; }
-        public int Code { get; set; }
         public string Description { get; set; }
+        public Guid? ViewId { get; set; }
 
     }
 }

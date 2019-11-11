@@ -46,7 +46,7 @@
             <!-- Caracteristicas en panel izquierdo -->
             <StackPanel Margin="10,0">
                 <!-- Imagen de la pieza -->
-                <Image Height="250" MaxHeight="250" Width="Auto" Source="{Binding ImageSource, Mode=TwoWay, Converter={StaticResource ItemImageCV}}" Margin="4"/>
+                <Image Height="250" MaxHeight="250" Width="Auto" Source="{Binding ImageSource, Mode=TwoWay, Converter={StaticResource ImageSourceCV}}" Margin="4"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -86,34 +86,35 @@
 
                     <!-- Número de inventario -->
                     <StackPanel Grid.Row="0" Orientation="Horizontal">
-                        <Label Content="Número de inventario:" FontSize="16" FontWeight="Bold" />
+                        <Label Content="Número de inventario temporal:" FontSize="16" FontWeight="Bold" />
                         <Label Content="{Binding StockNumber, Mode=TwoWay}" FontSize="16" />
                     </StackPanel>
 
                     <!-- Numeros -->
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="46*" />
+                            <ColumnDefinition Width="175*"/>
+                            <ColumnDefinition Width="221*" />
+                            <ColumnDefinition Width="221*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <Label Content="Numeros" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource CategoryTitleStyle}" Margin="0,0,0,2"/>
+                        <Label Content="Numeros" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" Style="{StaticResource CategoryTitleStyle}" Margin="0,0,0,2"/>
 
                         <cc:TitledTextBox
                             Title="Número de catálogo:" Text="{Binding CatalogNumber, Mode=TwoWay}"
                             Grid.Column="0" Grid.Row="1"
-                            HasToLowerCase="False" TextBoxHeight="25" LostFocus="ValidateOnlyNumbers"/>
+                            HasToLowerCase="False" TextBoxHeight="25" LostFocus="ValidateOnlyNumbers" Grid.ColumnSpan="2"/>
                         <cc:TitledTextBox 
                             Title="Número de registro:" Text="{Binding RegistryNumber, Mode=TwoWay}"
-                            Grid.Column="1" Grid.Row="1"
+                            Grid.Column="2" Grid.Row="1"
                             HasToLowerCase="False" TextBoxHeight="25" LostFocus="ValidateOnlyNumbers"/>
                         <cc:TitledTextBox 
                             Title="Otros números:" Text="{Binding OtherNumber, Mode=TwoWay}"
-                            Grid.Column="2" Grid.Row="1"
+                            Grid.Column="3" Grid.Row="1"
                             HasToLowerCase="False" TextBoxHeight="25" LostFocus="ValidateOnlyNumbers"/>
                     </Grid>
 
@@ -256,30 +257,30 @@
                         <Label Content="Medidas" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Style="{StaticResource CategoryTitleStyle}" />
 
                         <cc:TitledTextBox 
-                            Title="↕ Alto:" Text="{Binding Height, Mode=TwoWay, Converter={StaticResource NumberToStringCV}}"
+                            Title="↕ Alto:" Text="{Binding Height, Mode=TwoWay}"
                             Grid.Column="0" Grid.Row="1"
                             HasToLowerCase="False" TextBoxHorizontalContentAlignment="Center" PrefixText="cm" 
-                            LostFocus="ValidateOnlyNumbers" />
+                            LostFocus="ValidateOnlyFloats" />
                         <cc:TitledTextBox 
-                            Title="↔ Largo:" Text="{Binding Width, Mode=TwoWay, Converter={StaticResource NumberToStringCV}}"
+                            Title="↔ Largo:" Text="{Binding Width, Mode=TwoWay}"
                             Grid.Column="1" Grid.Row="1"
                             HasToLowerCase="False" TextBoxHorizontalContentAlignment="Center" PrefixText="cm"
-                            LostFocus="ValidateOnlyNumbers"/>
+                            LostFocus="ValidateOnlyFloats"/>
                         <cc:TitledTextBox 
-                            Title="➚ Espesor:" Text="{Binding Length, Mode=TwoWay, Converter={StaticResource NumberToStringCV}}"
+                            Title="➚ Espesor:" Text="{Binding Length, Mode=TwoWay}"
                             Grid.Column="2" Grid.Row="1"
                             HasToLowerCase="False" TextBoxHorizontalContentAlignment="Center" PrefixText="cm"
-                            LostFocus="ValidateOnlyNumbers"/>
+                            LostFocus="ValidateOnlyFloats"/>
                         <cc:TitledTextBox 
-                            Title="Diámetro:" Text="{Binding Diameter, Mode=TwoWay, Converter={StaticResource NumberToStringCV}}"
+                            Title="Diámetro:" Text="{Binding Diameter, Mode=TwoWay}"
                             Grid.Column="3" Grid.Row="1"
                             HasToLowerCase="False" TextBoxHorizontalContentAlignment="Center" PrefixText="cm"
-                            LostFocus="ValidateOnlyNumbers"/>
+                            LostFocus="ValidateOnlyFloats"/>
                         <cc:TitledTextBox 
-                            Title="Peso:" Text="{Binding Weight, Mode=TwoWay, Converter={StaticResource NumberToStringCV}}"
+                            Title="Peso:" Text="{Binding Weight, Mode=TwoWay}"
                             Grid.Column="4" Grid.Row="1"
                             HasToLowerCase="False" TextBoxHorizontalContentAlignment="Center" PrefixText="cm" 
-                            LostFocus="ValidateOnlyNumbers"/>
+                            LostFocus="ValidateOnlyFloats"/>
                     </Grid>
 
                     <!-- Descripción visual -->
