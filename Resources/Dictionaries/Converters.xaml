@@ -10,4 +10,6 @@
     <cv:ItemImageConverter x:Key="ItemImageCV"/>
     <cv:ImageSourceConverter x:Key="ImageSourceCV"/>
     <cv:ErrorColorConverter x:Key="ErrorColorCV" />
+    <cv:CollectionConverter x:Key="CollectionCV" />
+    <cv:ConservationConverter x:Key="ConservationCV" />
 </ResourceDictionary>

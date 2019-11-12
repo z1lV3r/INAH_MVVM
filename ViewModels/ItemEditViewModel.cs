@@ -105,13 +105,22 @@ namespace INAH.ViewModels
             });
 
             if (CatalogNumber != default) identifiersService.Upsert(StockNumber, "Catalog", CatalogNumber);
+            else identifiersService.Delete(StockNumber, "Catalog");
+
             if (RegistryNumber != default) identifiersService.Upsert(StockNumber, "Registry", RegistryNumber);
+            else identifiersService.Delete(StockNumber, "Registry");
+
             if (OtherNumber != default) identifiersService.Upsert(StockNumber, "Other", OtherNumber);
+            else identifiersService.Delete(StockNumber, "Other");
 
             if (!string.IsNullOrEmpty(Height))
             {
                 var floatHeight = float.Parse(Height);
                 if (floatHeight > default(float)) measuresDataService.Upsert(StockNumber, "Height", floatHeight);
+            }
+            else
+            {
+                measuresDataService.Delete(StockNumber, "Height");
             }
 
             if (!string.IsNullOrEmpty(Width))
@@ -119,11 +128,19 @@ namespace INAH.ViewModels
                 var floatWidth = float.Parse(Width);
                 if (floatWidth > default(float)) measuresDataService.Upsert(StockNumber, "Width", floatWidth);
             }
+            else
+            {
+                measuresDataService.Delete(StockNumber, "Width");
+            }
 
             if (!string.IsNullOrEmpty(Length))
             {
                 var floatLength = float.Parse(Length);
                 if (floatLength > default(float)) measuresDataService.Upsert(StockNumber, "Length", floatLength);
+            }
+            else
+            {
+                measuresDataService.Delete(StockNumber, "Length");
             }
 
             if (!string.IsNullOrEmpty(Diameter))
@@ -131,12 +148,21 @@ namespace INAH.ViewModels
                 var floatDiameter = float.Parse(Diameter);
                 if (floatDiameter > default(float)) measuresDataService.Upsert(StockNumber, "Diameter", floatDiameter);
             }
+            else
+            {
+                measuresDataService.Delete(StockNumber, "Diameter");
+            }
 
             if (!string.IsNullOrEmpty(Weight))
             {
                 var floatWeight = float.Parse(Weight);
                 if (floatWeight > default(float)) measuresDataService.Upsert(StockNumber, "Weight", floatWeight);
             }
+            else
+            {
+                measuresDataService.Delete(StockNumber, "Weight");
+            }
+
             if (ImageSource != null && ImageSource!= "/Resources/Images/notFound.png")
             {
                 var directoryTo = Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Images");

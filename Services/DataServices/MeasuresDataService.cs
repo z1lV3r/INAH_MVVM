@@ -35,5 +35,19 @@ namespace INAH.Services.DataServices
                 entities.SaveChanges();
             }
         }
+
+        public void Delete(int id, string type)
+        {
+            using (var entities = new TempDataEntities())
+            {
+                var measures = entities.Measures;
+                var identifier = measures.FirstOrDefault(i => i.Type.Equals(type) && i.TempId.Equals(id));
+                if (identifier != default)
+                {
+                    measures.Remove(identifier);
+                    entities.SaveChanges();
+                }
+            }
+        }
     }
 }

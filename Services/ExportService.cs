@@ -46,6 +46,10 @@ namespace INAH.Services
 
             File.WriteAllText(Path.Combine(exportedDir, "data.json"), serializedDatabase);
 
+            File.WriteAllText(Path.Combine(exportedDir, "CollectionTypes.json"), @"{""0"":""Arqueológico"",""1"":""Histórico"",""2"":""Paleontológico"",""3"":""Etnográfico"",""4"":""Contemporáneo""}");
+
+            File.WriteAllText(Path.Combine(exportedDir, "ConservationTypes.json"), @"{""0"":""No requiere intervencion"",""1"":""Requiere intervencion"",""2"":""Requiere intervencion urgente"",""3"":""En riesgo""}");
+
             var files = Directory.GetFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images"), "*.*");
 
             var p = piecesDataService.FindAll();

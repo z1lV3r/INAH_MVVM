@@ -98,6 +98,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\CollectionConverter.cs" />
+    <Compile Include="Converters\ConservationConverter.cs" />
     <Compile Include="Converters\ImageSourceConverter.cs" />
     <Compile Include="Exceptions\NotFloatInputException.cs" />
     <Compile Include="Views\Validations\Validations.cs" />

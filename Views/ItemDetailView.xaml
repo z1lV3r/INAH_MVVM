@@ -96,10 +96,10 @@
                         DetailTitle="Observaciones: " Value="{Binding Remarks, Mode=OneWay}"
                         Visibility="{Binding Remarks, Converter={StaticResource StringSetVisibilityCV}, Mode=OneWay}"/>
                     <cc:ItemDetailData 
-                        DetailTitle="Acervo: " Value="{Binding Collection, Mode=OneWay}"
+                        DetailTitle="Acervo: " Value="{Binding Collection, Mode=OneWay, Converter={StaticResource CollectionCV}}"
                         Visibility="{Binding Collection, Converter={StaticResource StringSetVisibilityCV}, Mode=OneWay}"/>
                     <cc:ItemDetailData 
-                        DetailTitle="Conservacion: " Value="{Binding ConservationType, Mode=OneWay}"
+                        DetailTitle="Conservacion: " Value="{Binding ConservationType, Mode=OneWay, Converter={StaticResource ConservationCV}}"
                         Visibility="{Binding ConservationType, Converter={StaticResource IntegerSetVisibilityCV}, Mode=OneWay}"/>
                     <cc:ItemDetailData 
                         DetailTitle="Avaluo: " Value="{Binding Valuation, Mode=OneWay, StringFormat='${0}'}"

@@ -9,6 +9,6 @@
              d:DesignWidth="250">
     <StackPanel>
         <Label Content="{Binding Title, ElementName=TitledComboBoxControl}" Style="{StaticResource TitleStyle}"/>
-        <ComboBox ItemsSource="{Binding ComboBoxItemsSource, ElementName=TitledComboBoxControl}" />
+        <ComboBox ItemsSource="{Binding ComboBoxItemsSource, ElementName=TitledComboBoxControl}" SelectedIndex="{Binding ComboBoxSelectedItem, ElementName=TitledComboBoxControl}" />
     </StackPanel>
 </UserControl>

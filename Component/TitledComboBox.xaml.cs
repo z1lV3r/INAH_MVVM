@@ -23,6 +23,7 @@ namespace INAH.Component
     {
         public static readonly DependencyProperty ComboBoxItemsSourceProperty;
         public static readonly DependencyProperty TitleProperty = DependencyProperty.Register("Title", typeof(string), typeof(TitledComboBox), new PropertyMetadata(default(string)));
+        public static readonly DependencyProperty ComboBoxSelectedItemProperty = DependencyProperty.Register("ComboBoxSelectedItem", typeof(string), typeof(TitledComboBox), new PropertyMetadata(default(string)));
 
         static TitledComboBox()
         {
@@ -41,6 +42,12 @@ namespace INAH.Component
         {
             get => (string) GetValue(TitleProperty);
             set => SetValue(TitleProperty, value);
+        }
+
+        public string ComboBoxSelectedItem
+        {
+            get => (string) GetValue(ComboBoxSelectedItemProperty);
+            set => SetValue(ComboBoxSelectedItemProperty, value);
         }
 
         public TitledComboBox()

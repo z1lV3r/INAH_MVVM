@@ -57,10 +57,10 @@
                 </Grid>
 
                 <Label Content="Acervo" Style="{StaticResource CategoryTitleStyle}" />
-                <cc:TitledComboBox Title="Tipo: " ComboBoxItemsSource="{Binding Types, Mode=TwoWay}"></cc:TitledComboBox>
+                <cc:TitledComboBox Title="Tipo: " ComboBoxItemsSource="{Binding Types, Mode=TwoWay}" ComboBoxSelectedItem="{Binding Collection, Mode=TwoWay}"/>
 
                 <Label Content="Conservación" Style="{StaticResource CategoryTitleStyle}"/>
-                <cc:TitledComboBox Title="Estado de la conservación:" ComboBoxItemsSource="{Binding ConservationTypes, Mode=TwoWay}" />
+                <cc:TitledComboBox Title="Estado de la conservación:" ComboBoxItemsSource="{Binding ConservationTypes, Mode=TwoWay}" ComboBoxSelectedItem="{Binding ConservationType, Mode=TwoWay}"/>
 
                 <Label Content="Avalúo" Style="{StaticResource CategoryTitleStyle}"/>
                 <cc:TitledTextBox
