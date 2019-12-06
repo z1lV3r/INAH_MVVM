@@ -25,9 +25,9 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Button Width="48" Height="48" Padding="5" Margin="10,0,0,0" Grid.Column="0" 
-                Background="{x:Null}" BorderBrush="{x:Null}" KeyboardNavigation.IsTabStop="False"
-                Command="{Binding BackToCollections}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
-            <Image Source="/Resources/Images/back.jpg"/>
+                Background="{x:Null}" BorderBrush="{x:Null}" KeyboardNavigation.IsTabStop="False" Visibility="{Binding HasPrevious, Converter={StaticResource BoolToVisibilityCV}}"
+                Command="{Binding PreviousItem}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
+            <Image Source="/Resources/Images/previous.jpg"/>
         </Button>
         <Grid Grid.Row="0" Grid.Column="1" Margin="0,0,0,0">
             <Grid.ColumnDefinitions>
@@ -37,12 +37,17 @@
             <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label Content="Número de inventario temporal:" Style="{StaticResource WindowTitleStyle}"
                        HorizontalAlignment="Center" FontWeight="Bold"/>
-                <Label Content="{Binding StockNumber, Mode=OneTime}" Style="{StaticResource WindowTitleStyle}"
+                <Label Content="{Binding StockNumber, Mode=TwoWay}" Style="{StaticResource WindowTitleStyle}"
                        HorizontalAlignment="Center" />
             </StackPanel>
-            <Label Content="{Binding Subject, Mode=OneTime}" Style="{StaticResource WindowTitleStyle}"
+            <Label Content="{Binding Subject, Mode=TwoWay}" Style="{StaticResource WindowTitleStyle}"
                    Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" FontWeight="Bold"/>
         </Grid>
+        <Button Width="48" Height="48" Padding="5" Margin="0,0,10,0" Grid.Row="0" Grid.Column="2" Visibility="{Binding HasNext, Converter={StaticResource BoolToVisibilityCV}}"
+                Background="{x:Null}" BorderBrush="{x:Null}" KeyboardNavigation.IsTabStop="False"
+                Command="{Binding NextItem}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
+            <Image Source="/Resources/Images/next.png"/>
+        </Button>
         <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="20,5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="9*" />
@@ -54,74 +59,74 @@
             </Grid.RowDefinitions>
             <WrapPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
                 <cc:ItemDetailData 
-                    DetailTitle="Numero de catalogo: " Value="{Binding CatalogNumber, Mode=OneWay}"
-                    Visibility="{Binding CatalogNumber, Converter={StaticResource StringSetVisibilityCV}, Mode=OneWay}" Margin="0,0,10,0"/>
+                    DetailTitle="Numero de catalogo: " Value="{Binding CatalogNumber, Mode=TwoWay}"
+                    Visibility="{Binding CatalogNumber, Converter={StaticResource StringSetVisibilityCV}, Mode=TwoWay}" Margin="0,0,10,0"/>
                 <cc:ItemDetailData 
-                    DetailTitle="Numero de registro: " Value="{Binding RegistryNumber, Mode=OneWay}"
-                    Visibility="{Binding RegistryNumber, Converter={StaticResource StringSetVisibilityCV}, Mode=OneWay}" Margin="0,0,10,0"/>
+                    DetailTitle="Numero de registro: " Value="{Binding RegistryNumber, Mode=TwoWay}"
+                    Visibility="{Binding RegistryNumber, Converter={StaticResource StringSetVisibilityCV}, Mode=TwoWay}" Margin="0,0,10,0"/>
                 <cc:ItemDetailData 
-                    DetailTitle="Otro numero: " Value="{Binding OtherNumber, Mode=OneWay}"
-                    Visibility="{Binding OtherNumber, Converter={StaticResource StringSetVisibilityCV}, Mode=OneWay}"/>
+                    DetailTitle="Otro numero: " Value="{Binding OtherNumber, Mode=TwoWay}"
+                    Visibility="{Binding OtherNumber, Converter={StaticResource StringSetVisibilityCV}, Mode=TwoWay}"/>
             </WrapPanel>
             <ScrollViewer Grid.Row="1" Grid.Column="0" VerticalScrollBarVisibility="Auto" Margin="0,0,15,0" VerticalAlignment="Center">
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                     <cc:ItemDetailData 
-                        DetailTitle="Piezas amparadas: " Value="{Binding CoveredPieces, Mode=OneWay}"
-                        Visibility="{Binding CoveredPieces, Converter={StaticResource IntegerSetVisibilityCV}, Mode=OneWay}"/>
+                        DetailTitle="Piezas amparadas: " Value="{Binding CoveredPieces, Mode=TwoWay}"
+                        Visibility="{Binding CoveredPieces, Converter={StaticResource IntegerSetVisibilityCV}, Mode=TwoWay}"/>
                     <cc:ItemDetailData 
-                        DetailTitle="Tipo de objeto: " Value="{Binding Type, Mode=OneWay}"
-                        Visibility="{Binding Type, Converter={StaticResource StringSetVisibilityCV}, Mode=OneWay}"/>
+                        DetailTitle="Tipo de objeto: " Value="{Binding Type, Mode=TwoWay}"
+                        Visibility="{Binding Type, Converter={StaticResource StringSetVisibilityCV}, Mode=TwoWay}"/>
                     <cc:ItemDetailData 
-                        DetailTitle="Autor: " Value="{Binding Author, Mode=OneWay}"
-                        Visibility="{Binding Author, Converter={StaticResource StringSetVisibilityCV}, Mode=OneWay}"/>
+                        DetailTitle="Autor: " Value="{Binding Author, Mode=TwoWay}"
+                        Visibility="{Binding Author, Converter={StaticResource StringSetVisibilityCV}, Mode=TwoWay}"/>
                     <cc:ItemDetailData 
-                        DetailTitle="Epoca: " Value="{Binding Period, Mode=OneWay}"
-                        Visibility="{Binding Period, Converter={StaticResource StringSetVisibilityCV}, Mode=OneWay}"/>
+                        DetailTitle="Epoca: " Value="{Binding Period, Mode=TwoWay}"
+                        Visibility="{Binding Period, Converter={StaticResource StringSetVisibilityCV}, Mode=TwoWay}"/>
                     <cc:ItemDetailData 
-                        DetailTitle="Cultura: " Value="{Binding Culture, Mode=OneWay}"
-                        Visibility="{Binding Culture, Converter={StaticResource StringSetVisibilityCV}, Mode=OneWay}"/>
+                        DetailTitle="Cultura: " Value="{Binding Culture, Mode=TwoWay}"
+                        Visibility="{Binding Culture, Converter={StaticResource StringSetVisibilityCV}, Mode=TwoWay}"/>
                     <cc:ItemDetailData 
-                        DetailTitle="Origen: " Value="{Binding Origin, Mode=OneWay}"
-                        Visibility="{Binding Origin, Converter={StaticResource StringSetVisibilityCV}, Mode=OneWay}"/>
+                        DetailTitle="Origen: " Value="{Binding Origin, Mode=TwoWay}"
+                        Visibility="{Binding Origin, Converter={StaticResource StringSetVisibilityCV}, Mode=TwoWay}"/>
                     <cc:ItemDetailData 
-                        DetailTitle="Forma: " Value="{Binding Shape, Mode=OneWay}"
-                        Visibility="{Binding Shape, Converter={StaticResource StringSetVisibilityCV}, Mode=OneWay}"/>
+                        DetailTitle="Forma: " Value="{Binding Shape, Mode=TwoWay}"
+                        Visibility="{Binding Shape, Converter={StaticResource StringSetVisibilityCV}, Mode=TwoWay}"/>
                     <cc:ItemDetailData 
-                        DetailTitle="Inscripciones: " Value="{Binding Inscriptions, Mode=OneWay}"
-                        Visibility="{Binding Inscriptions, Converter={StaticResource StringSetVisibilityCV}, Mode=OneWay}"/>
+                        DetailTitle="Inscripciones: " Value="{Binding Inscriptions, Mode=TwoWay}"
+                        Visibility="{Binding Inscriptions, Converter={StaticResource StringSetVisibilityCV}, Mode=TwoWay}"/>
                     <cc:ItemDetailData 
-                        DetailTitle="Descripcion: " Value="{Binding Description, Mode=OneWay}"
-                        Visibility="{Binding Description, Converter={StaticResource StringSetVisibilityCV}, Mode=OneWay}"/>
+                        DetailTitle="Descripcion: " Value="{Binding Description, Mode=TwoWay}"
+                        Visibility="{Binding Description, Converter={StaticResource StringSetVisibilityCV}, Mode=TwoWay}"/>
                     <cc:ItemDetailData 
-                        DetailTitle="Observaciones: " Value="{Binding Remarks, Mode=OneWay}"
-                        Visibility="{Binding Remarks, Converter={StaticResource StringSetVisibilityCV}, Mode=OneWay}"/>
+                        DetailTitle="Observaciones: " Value="{Binding Remarks, Mode=TwoWay}"
+                        Visibility="{Binding Remarks, Converter={StaticResource StringSetVisibilityCV}, Mode=TwoWay}"/>
                     <cc:ItemDetailData 
-                        DetailTitle="Acervo: " Value="{Binding Collection, Mode=OneWay, Converter={StaticResource CollectionCV}}"
-                        Visibility="{Binding Collection, Converter={StaticResource StringSetVisibilityCV}, Mode=OneWay}"/>
+                        DetailTitle="Acervo: " Value="{Binding Collection, Mode=TwoWay, Converter={StaticResource CollectionCV}}"
+                        Visibility="{Binding Collection, Converter={StaticResource StringSetVisibilityCV}, Mode=TwoWay}"/>
                     <cc:ItemDetailData 
-                        DetailTitle="Conservacion: " Value="{Binding ConservationType, Mode=OneWay, Converter={StaticResource ConservationCV}}"
-                        Visibility="{Binding ConservationType, Converter={StaticResource IntegerSetVisibilityCV}, Mode=OneWay}"/>
+                        DetailTitle="Conservacion: " Value="{Binding ConservationType, Mode=TwoWay, Converter={StaticResource ConservationCV}}"
+                        Visibility="{Binding ConservationType, Converter={StaticResource IntegerSetVisibilityCV}, Mode=TwoWay}"/>
                     <cc:ItemDetailData 
-                        DetailTitle="Avaluo: " Value="{Binding Valuation, Mode=OneWay, StringFormat='${0}'}"
-                        Visibility="{Binding Valuation, Converter={StaticResource IntegerSetVisibilityCV}, Mode=OneWay}"/>
+                        DetailTitle="Avaluo: " Value="{Binding Valuation, Mode=TwoWay, StringFormat='${0}'}"
+                        Visibility="{Binding Valuation, Converter={StaticResource IntegerSetVisibilityCV}, Mode=TwoWay}"/>
                     <cc:ItemDetailData 
-                        DetailTitle="Materia prima: " Value="{Binding RawMaterial, Mode=OneWay}"
-                        Visibility="{Binding RawMaterial, Converter={StaticResource StringSetVisibilityCV}, Mode=OneWay}"/>
+                        DetailTitle="Materia prima: " Value="{Binding RawMaterial, Mode=TwoWay}"
+                        Visibility="{Binding RawMaterial, Converter={StaticResource StringSetVisibilityCV}, Mode=TwoWay}"/>
                     <cc:ItemDetailData 
-                        DetailTitle="Tecnica de manufactura: " Value="{Binding ManufacturingTechnique, Mode=OneWay}"
-                        Visibility="{Binding ManufacturingTechnique, Converter={StaticResource StringSetVisibilityCV}, Mode=OneWay}"/>
+                        DetailTitle="Tecnica de manufactura: " Value="{Binding ManufacturingTechnique, Mode=TwoWay}"
+                        Visibility="{Binding ManufacturingTechnique, Converter={StaticResource StringSetVisibilityCV}, Mode=TwoWay}"/>
                     <cc:ItemDetailData 
-                        DetailTitle="Tecnica decorativa: " Value="{Binding DecorativeTechnique, Mode=OneWay}"
-                        Visibility="{Binding DecorativeTechnique, Converter={StaticResource StringSetVisibilityCV}, Mode=OneWay}"/>
+                        DetailTitle="Tecnica decorativa: " Value="{Binding DecorativeTechnique, Mode=TwoWay}"
+                        Visibility="{Binding DecorativeTechnique, Converter={StaticResource StringSetVisibilityCV}, Mode=TwoWay}"/>
                     <cc:ItemDetailData 
-                        DetailTitle="Procedencia: " Value="{Binding Provenance, Mode=OneWay}"
-                        Visibility="{Binding Provenance, Converter={StaticResource StringSetVisibilityCV}, Mode=OneWay}"/>
+                        DetailTitle="Procedencia: " Value="{Binding Provenance, Mode=TwoWay}"
+                        Visibility="{Binding Provenance, Converter={StaticResource StringSetVisibilityCV}, Mode=TwoWay}"/>
                     <cc:ItemDetailData 
-                        DetailTitle="Metodo de adquisicion: " Value="{Binding AcquisitionMethod, Mode=OneWay}"
-                        Visibility="{Binding AcquisitionMethod, Converter={StaticResource StringSetVisibilityCV}, Mode=OneWay}"/>
+                        DetailTitle="Metodo de adquisicion: " Value="{Binding AcquisitionMethod, Mode=TwoWay}"
+                        Visibility="{Binding AcquisitionMethod, Converter={StaticResource StringSetVisibilityCV}, Mode=TwoWay}"/>
                     <cc:ItemDetailData 
-                        DetailTitle="Ubicacion actual: " Value="{Binding Location, Mode=OneWay}"
-                        Visibility="{Binding Location, Converter={StaticResource StringSetVisibilityCV}, Mode=OneWay}"/>
+                        DetailTitle="Ubicacion actual: " Value="{Binding Location, Mode=TwoWay}"
+                        Visibility="{Binding Location, Converter={StaticResource StringSetVisibilityCV}, Mode=TwoWay}"/>
                 </StackPanel>
             </ScrollViewer>
             <Grid Grid.Row="1" Grid.Column="1">
@@ -134,19 +139,19 @@
                     <Label Content="Medidas" HorizontalAlignment="Center" FontWeight="Bold"/>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <cc:ItemDetailMeasure
-                            MeasureName="Alto: " MeasureValue="{Binding Height, Mode=OneWay}"
+                            MeasureName="Alto: " MeasureValue="{Binding Height, Mode=TwoWay}"
                             Visibility="{Binding Height, Converter={StaticResource ItemDetailMeasureVisibilityCV}}" Margin="7,0"/>
                         <cc:ItemDetailMeasure
-                            MeasureName="Ancho: " MeasureValue="{Binding Width, Mode=OneWay}"
+                            MeasureName="Ancho: " MeasureValue="{Binding Width, Mode=TwoWay}"
                             Visibility="{Binding Width, Converter={StaticResource ItemDetailMeasureVisibilityCV}}" Margin="7,0"/>
                         <cc:ItemDetailMeasure
-                            MeasureName="Largo: " MeasureValue="{Binding Length, Mode=OneWay}"
+                            MeasureName="Largo: " MeasureValue="{Binding Length, Mode=TwoWay}"
                             Visibility="{Binding Length, Converter={StaticResource ItemDetailMeasureVisibilityCV}}" Margin="7,0"/>
                         <cc:ItemDetailMeasure
-                            MeasureName="Diametro: " MeasureValue="{Binding Diameter, Mode=OneWay}"
+                            MeasureName="Diametro: " MeasureValue="{Binding Diameter, Mode=TwoWay}"
                             Visibility="{Binding Diameter, Converter={StaticResource ItemDetailMeasureVisibilityCV}}" Margin="7,0"/>
                         <cc:ItemDetailMeasure
-                            MeasureName="Peso: " MeasureValue="{Binding Weight, Mode=OneWay}"
+                            MeasureName="Peso: " MeasureValue="{Binding Weight, Mode=TwoWay}"
                             Visibility="{Binding Weight, Converter={StaticResource ItemDetailMeasureVisibilityCV}}" Margin="7,0"/>
                     </WrapPanel>
                 </StackPanel>

@@ -27,8 +27,8 @@ namespace INAH.ViewModels
         public RelayCommand CloseCommand { get; set; }
         public RelayCommand ExportCommand { get; set; }
 
-        private PiecesDataService piecesDataService;
-        private ExportService exportService;
+        private readonly PiecesDataService piecesDataService;
+        private readonly ExportService exportService;
         public CollectionsViewModel() { }
 
         public CollectionsViewModel(int userId)

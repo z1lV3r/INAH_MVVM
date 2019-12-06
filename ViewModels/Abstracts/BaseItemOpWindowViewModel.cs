@@ -265,6 +265,11 @@ namespace INAH.ViewModels.Abstracts
             measuresDataService = new MeasuresDataService();
             ReturnToCollections = new RelayCommand(ReturnToCollectionsExec);
             BackToCollections = new RelayCommand(BackToCollectionsExec);
+            LoadData(id);
+        }
+
+        protected void LoadData(int id)
+        {
 
             var piece = piecesDataService.Find(id);
             var details = pieceDetailsDataService.Find(id) ?? new Piece_Details();
@@ -301,7 +306,6 @@ namespace INAH.ViewModels.Abstracts
 
             ImageSource = Utils.GetImageSource(StockNumber);
         }
-
         public void ReturnToCollectionsExec(object args)
         {
             navigatorService.NavigateToCollections(ViewId, CollectionsViewModel.userId, NavigatorService.NavigationMode.MODAL);
